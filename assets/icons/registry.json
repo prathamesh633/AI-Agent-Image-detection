@@ -195,6 +195,120 @@
       60
     ]
   },
+  "azure_redis": {
+    "aliases": [
+      "azure managed redis",
+      "redis",
+      "azure redis",
+      "managed redis"
+    ],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/databases/Cache_Redis.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "azure_front_door": {
+    "aliases": [
+      "azure front door",
+      "front door"
+    ],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/Front_Doors.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "azure_ad": {
+    "aliases": [
+      "azure ad sso",
+      "azure ad",
+      "entra id",
+      "active directory"
+    ],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/identity/Azure_Active_Directory.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "azure_openai": {
+    "aliases": [
+      "open ai",
+      "azure openai",
+      "openai"
+    ],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/ai_machine_learning/Cognitive_Services.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "azure_search": {
+    "aliases": [
+      "ai search",
+      "azure search"
+    ],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/ai_machine_learning/Search_Services.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "azure_document_intelligence": {
+    "aliases": [
+      "document intelligence",
+      "form recognizer"
+    ],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/ai_machine_learning/Form_Recognizers.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "azure_container_apps": {
+    "aliases": [
+      "container apps",
+      "container app"
+    ],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/containers/Container_Apps.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "azure_acr": {
+    "aliases": [
+      "acr",
+      "container registry",
+      "azure container registry"
+    ],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/containers/Container_Registries.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "gitlab": {
+    "aliases": [
+      "gitlab",
+      "git repo"
+    ],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/GitLab.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
   "aws_vpc": {
     "aliases": [
       "vpc",
