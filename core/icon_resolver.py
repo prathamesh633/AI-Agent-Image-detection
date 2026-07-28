@@ -1,4 +1,4 @@
-# core/icon_resolver.py
+import functools
 import json
 import os
 import re
@@ -6,11 +6,17 @@ import difflib
 from typing import Dict, Optional, Tuple
 
 
+def _default_registry_path() -> str:
+    """Returns the default path to registry.json."""
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_dir, "assets", "icons", "registry.json")
+
+
+@functools.lru_cache(maxsize=4)
 def load_registry(registry_path: Optional[str] = None) -> Dict[str, dict]:
-    """Loads icon registry JSON mapping icon keys and aliases to draw.io shapes."""
+    """Loads icon registry JSON mapping icon keys and aliases to draw.io shapes. Cached after first load."""
     if registry_path is None:
-        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        registry_path = os.path.join(base_dir, "assets", "icons", "registry.json")
+        registry_path = _default_registry_path()
 
     if os.path.exists(registry_path):
         with open(registry_path, "r", encoding="utf-8") as f:

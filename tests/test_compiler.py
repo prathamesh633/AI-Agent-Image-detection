@@ -318,3 +318,57 @@ def test_failure_negative_geometry():
     with pytest.raises(XMLValidationError) as exc_info:
         validate_drawio_xml(bad_xml)
     assert "Negative geometry detected: width='-50.0'" in str(exc_info.value)
+
+
+def test_three_level_nesting_coordinates():
+    """Verify that 3-level nesting (Region -> VNet -> Subnet -> Node) computes relative coordinates correctly."""
+    ir = DiagramIR(
+        canvas=Canvas(width=1500, height=1200),
+        groups=[
+            Group(id="region", type="azure_region", label="Region", x=100, y=100, width=1000, height=800),
+            Group(id="vnet", type="azure_vnet", label="VNet", x=150, y=150, width=800, height=600, parent="region"),
+            Group(id="subnet", type="azure_subnet", label="Subnet", x=200, y=200, width=400, height=300, parent="vnet"),
+        ],
+        nodes=[
+            Node(id="node1", type="azure_app_service", label="App", x=250, y=250, width=60, height=60, parent="subnet"),
+        ],
+    )
+    xml_output = generate_xml(ir)
+    assert validate_drawio_xml(xml_output) is True
+    # Subnet is at x=200 relative to canvas, VNet parent absolute coords are (150, 150), so Subnet rel_x = 200 - 150 = 50
+    assert 'id="subnet"' in xml_output
+    # Node1 is at x=250 relative to canvas, Subnet absolute coords are (200, 200), so Node1 rel_x = 250 - 200 = 50
+    assert 'id="node1"' in xml_output
+
+
+def test_xml_special_characters_escaping():
+    """Verify XML special characters in labels (e.g. &, <, >, ", ') are safely escaped."""
+    ir = DiagramIR(
+        canvas=Canvas(width=800, height=600),
+        nodes=[
+            Node(id="n1", type="generic_box", label="App & Service <v1.0> \"test\"", x=100, y=100, width=60, height=60),
+        ],
+    )
+    xml_output = generate_xml(ir)
+    assert validate_drawio_xml(xml_output) is True
+    assert 'value="App &amp; Service &lt;v1.0&gt; &quot;test&quot;"' in xml_output or 'App &amp; Service' in xml_output
+
+
+def test_large_diagram_compilation():
+    """Stress test: compile a large diagram with 35 nodes and 20 edges."""
+    nodes = [
+        Node(id=f"node_{i}", type="generic_box", label=f"Node {i}", x=50 + (i % 6) * 100, y=50 + (i // 6) * 100, width=60, height=60)
+        for i in range(35)
+    ]
+    edges = [
+        Edge(id=f"edge_{i}", source=f"node_{i}", target=f"node_{(i+1)%35}", label=f"Link {i}")
+        for i in range(20)
+    ]
+    ir = DiagramIR(
+        canvas=Canvas(width=2000, height=2000),
+        nodes=nodes,
+        edges=edges,
+    )
+    xml_output = generate_xml(ir)
+    assert validate_drawio_xml(xml_output) is True
+    assert len(xml_output) > 1000

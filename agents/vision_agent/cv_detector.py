@@ -135,15 +135,7 @@ def detect_visual_shapes(image_path: str) -> List[ShapeBox]:
 
 
 def calculate_containment(parent_bbox: List[float], child_bbox: List[float]) -> bool:
-    """Returns True if child_bbox center is inside parent_bbox."""
-    px, py, pw, ph = parent_bbox
-    cx, cy, cw, ch = child_bbox
-
-    child_center_x = cx + cw / 2.0
-    child_center_y = cy + ch / 2.0
-
-    return (
-        px <= child_center_x <= (px + pw)
-        and py <= child_center_y <= (py + ph)
-        and (pw * ph) > (cw * ch)
-    )
+    """Returns True if child_bbox is geometrically contained inside parent_bbox.
+    Delegates to the canonical implementation in assembly.py."""
+    from core.diagram_ir.assembly import contains_bbox
+    return contains_bbox(parent_bbox, child_bbox)

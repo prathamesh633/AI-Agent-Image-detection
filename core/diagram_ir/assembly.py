@@ -29,7 +29,7 @@ def normalize_coordinates(
     """Scales bounding box coordinates [x, y, w, h] to target canvas dimensions."""
     x, y, w, h = bbox
 
-    # If coordinates are normalized in [0.0, 1.0] range
+    # 1. If coordinates are normalized in [0.0, 1.0] ratio range
     if max(x, y, w, h) <= 1.0:
         return [
             x * target_canvas.width,
@@ -38,13 +38,13 @@ def normalize_coordinates(
             h * target_canvas.height,
         ]
 
-    # If pixel coordinates with source_size provided
+    # 2. If pixel coordinates with source_size provided, scale proportionally to canvas
     if source_size and source_size[0] > 0 and source_size[1] > 0:
         scale_x = target_canvas.width / float(source_size[0])
         scale_y = target_canvas.height / float(source_size[1])
         return [x * scale_x, y * scale_y, w * scale_x, h * scale_y]
 
-    # Already in canvas coordinates
+    # 3. Already in canvas coordinates
     return [float(x), float(y), float(w), float(h)]
 
 

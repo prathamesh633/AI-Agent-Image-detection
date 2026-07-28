@@ -41,13 +41,41 @@ def parse_args():
     return parser.parse_args()
 
 
+MAX_IMAGE_SIZE_MB = 20.0
+ALLOWED_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".pdf"}
+
+
+def validate_input_image(image_path: str):
+    """Validates input file existence, extension, and size."""
+    if not os.path.exists(image_path):
+        raise FileNotFoundError(f"Input file '{image_path}' does not exist.")
+
+    ext = os.path.splitext(image_path)[1].lower()
+    if ext not in ALLOWED_EXTENSIONS:
+        raise ValueError(
+            f"Unsupported file format '{ext}'. Supported formats: {', '.join(sorted(ALLOWED_EXTENSIONS))}"
+        )
+
+    file_size_mb = os.path.getsize(image_path) / (1024 * 1024)
+    if file_size_mb > MAX_IMAGE_SIZE_MB:
+        raise ValueError(
+            f"Input file size ({file_size_mb:.1f} MB) exceeds maximum limit of {MAX_IMAGE_SIZE_MB} MB."
+        )
+
+
 def main():
     args = parse_args()
     image_path = os.path.abspath(args.image_path)
 
-    if not args.mock and not os.path.exists(image_path):
-        print(f"Error: Input file '{image_path}' does not exist.", file=sys.stderr)
-        sys.exit(1)
+    if not args.mock:
+        try:
+            validate_input_image(image_path)
+        except (FileNotFoundError, ValueError) as err:
+            print(f"Error: {err}", file=sys.stderr)
+            sys.exit(1)
+
+    if args.api_key:
+        print("[WARNING] Passing API keys via CLI args can expose secrets in process tables. Use GEMINI_API_KEY or OPENAI_API_KEY env variables instead.", file=sys.stderr)
 
     output_path = args.output
     if not output_path:

@@ -1,21 +1,8 @@
 # core/drawio/compiler.py
-import json
-import os
 import xml.etree.ElementTree as ET
 from typing import Dict, Optional, Tuple
 from core.diagram_ir.schema import DiagramIR, Node, Group, Edge
-
-
-def load_icon_registry(registry_path: Optional[str] = None) -> Dict[str, dict]:
-    """Loads icon registry JSON mapping icon keys and aliases to draw.io shapes."""
-    if registry_path is None:
-        base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        registry_path = os.path.join(base_dir, "assets", "icons", "registry.json")
-
-    if os.path.exists(registry_path):
-        with open(registry_path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    return {}
+from core.icon_resolver import load_registry
 
 
 def resolve_node_style(node: Node, registry: Dict[str, dict]) -> str:
@@ -204,7 +191,7 @@ def add_edge(root: ET.Element, edge: Edge) -> ET.Element:
 
 def generate_xml(ir: DiagramIR, icon_registry_path: Optional[str] = None) -> str:
     """Generates complete draw.io XML representation from DiagramIR."""
-    registry = load_icon_registry(icon_registry_path)
+    registry = load_registry(icon_registry_path)
     mxfile, root = create_canvas(ir.canvas.width, ir.canvas.height)
 
     # Compute absolute top-left coordinates for all groups to support relative child positioning

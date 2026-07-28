@@ -19,15 +19,14 @@ new_AI_Agent/
 ├── core/                              # Core Compiler & Intermediate Representation Engine
 │   ├── diagram_ir/
 │   │   ├── __init__.py
-│   │   └── schema.py                  # Pydantic models for DiagramIR, Canvas, Node, Group, Edge
+│   │   ├── schema.py                  # Pydantic models for DiagramIR, Canvas, Node, Group, Edge
+│   │   └── assembly.py                # Bounding box containment & relative coordinate math
 │   ├── drawio/
 │   │   ├── __init__.py
 │   │   ├── compiler.py                # XML Compiler converting IR tree to mxGraphModel XML
 │   │   └── xml_validator.py           # Hard validation gates (well-formed, unique IDs, geometry)
-│   └── vision_pipeline/
-│       ├── __init__.py
-│       ├── assembly.py                # Bounding box containment & relative coordinate math
-│       └── icon_resolver.py           # Fuzzy string matcher linking labels to stencil registry
+│   ├── icon_resolver.py               # Fuzzy string matcher linking labels to stencil registry
+│   └── layout_engine.py               # Collision resolution, container bounds, grid snapping
 │
 ├── agents/                            # Vision & Extraction Sub-Agents
 │   └── vision_agent/
@@ -109,7 +108,7 @@ new_AI_Agent/
 
 ### 4. Relative Coordinate Normalization
 - **Problem**: Draw.io requires child nodes inside a group to use coordinates relative to the parent box, while vision models output absolute canvas coordinates.
-- **Solution**: Implemented coordinate conversion in `core/vision_pipeline/assembly.py` (`rel_x = child_x - parent_x`).
+- **Solution**: Implemented coordinate conversion in `core/diagram_ir/assembly.py` (`rel_x = child_x - parent_x`).
 
 ---
 
