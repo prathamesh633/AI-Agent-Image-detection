@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="Electron" agent="5.0" version="21.6.8" type="device">
+  <diagram id="diagram_1" name="Page-1">
+    <mxGraphModel dx="1000" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="vnet_main" value="Virtual Network" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;startSize=23;collapsible=0;container=1;" vertex="1" parent="1">
+          <mxGeometry x="96.0" y="90.0" width="1008.0" height="720.0" as="geometry" />
+        </mxCell>
+        <mxCell id="subnet_app" value="App Subnet" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;startSize=23;collapsible=0;container=1;" vertex="1" parent="vnet_main">
+          <mxGeometry x="48.0" y="72.0" width="432.0" height="585.0" as="geometry" />
+        </mxCell>
+        <mxCell id="subnet_db" value="Data Subnet" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;startSize=23;collapsible=0;container=1;" vertex="1" parent="vnet_main">
+          <mxGeometry x="528.0" y="72.0" width="432.0" height="585.0" as="geometry" />
+        </mxCell>
+        <mxCell id="app_svc" value="Web Application" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/app_services/App_Services.svg;" vertex="1" parent="subnet_app">
+          <mxGeometry x="48.0" y="90.00000000000003" width="96.0" height="90.0" as="geometry" />
+        </mxCell>
+        <mxCell id="pg_db" value="Primary Database" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/databases/Azure_Database_PostgreSQL_Server.svg;" vertex="1" parent="subnet_db">
+          <mxGeometry x="48.000000000000114" y="90.00000000000003" width="96.0" height="90.0" as="geometry" />
+        </mxCell>
+        <mxCell id="key_vault" value="Secrets Vault" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/security/Key_Vaults.svg;" vertex="1" parent="subnet_db">
+          <mxGeometry x="48.000000000000114" y="306.0" width="96.0" height="90.0" as="geometry" />
+        </mxCell>
+        <mxCell id="e_db_connect" value="SQL Query" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=classic;dashed=0;" edge="1" parent="1" source="app_svc" target="pg_db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_kv_auth" value="Get Secret" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=classic;dashed=1;" edge="1" parent="1" source="app_svc" target="key_vault">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,94 @@
+Metadata-Version: 2.4
+Name: architecture-agent
+Version: 0.1.0
+Summary: Diagram-to-draw.io Reconstruction Agent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: pydantic>=2.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+
+# Diagram-to-draw.io Reconstruction Agent
+
+Deterministic compiler and validation agent that generates fully editable `.drawio` files from static architecture diagram images or structured Diagram Intermediate Representation (IR).
+
+---
+
+## 1. Setup Instructions
+
+### Environment Prerequisites
+- Python 3.9+
+
+### Virtual Environment Setup
+```bash
+# Create virtual environment
+python3 -m venv venv
+
+# Activate virtual environment
+source venv/bin/activate
+
+# Install package dependencies
+pip install -e .[dev]
+```
+
+---
+
+## 2. CLI Usage — Converting Diagram Images to `.drawio`
+
+Convert any diagram image (PNG/JPG) to an editable `.drawio` file using the `convert.py` CLI:
+
+```bash
+# Basic conversion
+python convert.py path/to/diagram.png -o output.drawio
+
+# Specify API key for Vision LLM provider
+python convert.py path/to/diagram.png --api-key YOUR_API_KEY -o output.drawio
+
+# Run in offline mock mode (for testing)
+python convert.py diagram.png --mock -o output.drawio
+```
+
+### Pipeline Phases Executed:
+1. **Vision Detection**: Detects components, bounding boxes, containers, labels, and arrows.
+2. **IR Assembly**: Normalizes coordinates, calculates parent-child group containment, and resolves icon stencils via fuzzy alias matching.
+3. **XML Compilation**: Compiles the validated `DiagramIR` into draw.io XML structure.
+4. **Structural Validation**: Hard-gate validation ensuring XML well-formedness, unique IDs, existing parent/edge references, and positive geometry.
+
+---
+
+## 3. Running Tests
+
+Run the full unit and integration test suite using `pytest`:
+
+```bash
+pytest -v
+```
+
+This will run tests covering:
+- Flat node layout & compilation
+- Single and multi-level group nesting
+- Edges with waypoints & custom dashed styles
+- Azure icon stencil resolution vs generic fallback box rendering
+- Compiler failure modes (duplicate IDs, orphaned edge endpoints, negative geometry)
+- Fuzzy icon alias matching and bounding box containment calculations
+- Full end-to-end Vision -> IR Assembly -> Compiler -> Validator pipeline
+
+---
+
+## 4. Manual Verification of `.drawio` Files
+
+To verify a generated `.drawio` file (e.g. `mock_architecture.drawio` or `sample_architecture.drawio`):
+
+1. **Web Browser (diagrams.net)**:
+   - Go to [https://app.diagrams.net](https://app.diagrams.net)
+   - Select **Open Existing Diagram** -> choose your `.drawio` file from your file system (or drag and drop it into the browser window).
+
+2. **Draw.io Desktop App**:
+   - Open draw.io desktop application.
+   - Go to **File** -> **Open** -> select your `.drawio` file.
+
+### Verification Checklist:
+- **Structure**: All containers (Region, VNet, Subnets) render with proper parent-child grouping. Moving a parent group moves its enclosed children.
+- **Icons & Shapes**: Azure icons (Front Door, App Service, APIM, PostgreSQL, Key Vault) display proper stencils; unrecognized shapes render as clean, editable generic boxes.
+- **Connections & Labels**: Edges connect to their respective nodes, display direction arrows (solid/dashed), and render edge labels clearly.
+- **Editability**: Every single element is fully editable, selectable, and draggable without error warnings.

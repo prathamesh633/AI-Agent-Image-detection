@@ -1,0 +1,17 @@
+README.md
+pyproject.toml
+architecture_agent.egg-info/PKG-INFO
+architecture_agent.egg-info/SOURCES.txt
+architecture_agent.egg-info/dependency_links.txt
+architecture_agent.egg-info/requires.txt
+architecture_agent.egg-info/top_level.txt
+core/__init__.py
+core/icon_resolver.py
+core/diagram_ir/__init__.py
+core/diagram_ir/assembly.py
+core/diagram_ir/schema.py
+core/drawio/__init__.py
+core/drawio/compiler.py
+core/drawio/xml_validator.py
+tests/test_compiler.py
+tests/test_vision_pipeline.py

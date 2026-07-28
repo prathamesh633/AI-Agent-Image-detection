@@ -1,0 +1,739 @@
+{
+  "azure_app_service": {
+    "aliases": [
+      "app service",
+      "web app",
+      "azure webapp",
+      "app svc",
+      "azure_app_service"
+    ],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/app_services/App_Services.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "azure_vnet": {
+    "aliases": [
+      "vnet",
+      "virtual network",
+      "azure vnet",
+      "azure_vnet"
+    ],
+    "provider": "azure",
+    "drawio_shape": "swimlane;whiteSpace=wrap;html=1;fillColor=#EBF3FA;strokeColor=#0078D4;startSize=28;collapsible=0;container=1;fontSize=11;fontStyle=1;",
+    "default_size": [
+      300,
+      200
+    ]
+  },
+  "azure_subnet": {
+    "aliases": [
+      "subnet",
+      "sub-net",
+      "azure subnet",
+      "azure_subnet",
+      "public subnet",
+      "private subnet"
+    ],
+    "provider": "azure",
+    "drawio_shape": "swimlane;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0078D4;startSize=28;collapsible=0;container=1;fontSize=11;fontStyle=1;",
+    "default_size": [
+      200,
+      150
+    ]
+  },
+  "azure_key_vault": {
+    "aliases": [
+      "key vault",
+      "keyvault",
+      "azure key vault",
+      "kv"
+    ],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/security/Key_Vaults.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "azure_postgresql": {
+    "aliases": [
+      "postgresql",
+      "postgres",
+      "azure postgresql",
+      "azure_postgresql"
+    ],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/databases/Azure_Database_PostgreSQL_Server.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "azure_storage": {
+    "aliases": [
+      "storage account",
+      "blob storage",
+      "azure storage",
+      "storage"
+    ],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/storage/Storage_Accounts.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "azure_front_door": {
+    "aliases": [
+      "front door",
+      "azure front door",
+      "afd",
+      "cdn"
+    ],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/Front_Doors.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "azure_vm": {
+    "aliases": [
+      "virtual machine",
+      "azure vm",
+      "vm",
+      "compute vm"
+    ],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/compute/Virtual_Machine.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "azure_aks": {
+    "aliases": [
+      "aks",
+      "azure kubernetes service",
+      "kubernetes cluster"
+    ],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/compute/Kubernetes_Services.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "azure_sql": {
+    "aliases": [
+      "azure sql",
+      "sql database",
+      "mssql",
+      "azure_sql"
+    ],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/databases/SQL_Database.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "azure_cosmos_db": {
+    "aliases": [
+      "cosmos db",
+      "azure cosmos",
+      "cosmosdb",
+      "nosql db"
+    ],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/databases/Azure_Cosmos_DB.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "azure_function": {
+    "aliases": [
+      "function app",
+      "azure function",
+      "serverless function",
+      "func"
+    ],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/compute/Function_Apps.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "azure_load_balancer": {
+    "aliases": [
+      "azure load balancer",
+      "azure lb",
+      "load balancer"
+    ],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/Load_Balancers.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "azure_firewall": {
+    "aliases": [
+      "azure firewall",
+      "firewall",
+      "network firewall"
+    ],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/Firewalls.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "aws_vpc": {
+    "aliases": [
+      "vpc",
+      "aws vpc",
+      "virtual private cloud"
+    ],
+    "provider": "aws",
+    "drawio_shape": "rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#B0BEC5;strokeWidth=1.5;arcSize=3;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=40;spacingTop=10;fontSize=12;fontStyle=1;fontColor=#6B7280;",
+    "default_size": [
+      680,
+      780
+    ]
+  },
+  "aws_subnet": {
+    "aliases": [
+      "aws subnet",
+      "public subnet",
+      "private subnet",
+      "aws_subnet"
+    ],
+    "provider": "aws",
+    "drawio_shape": "rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#A7F3D0;strokeWidth=1.5;arcSize=4;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=30;spacingTop=10;fontSize=11;fontStyle=1;fontColor=#047857;",
+    "default_size": [
+      320,
+      180
+    ]
+  },
+  "aws_subnet_private": {
+    "aliases": [
+      "private_subnet",
+      "private subnet"
+    ],
+    "provider": "aws",
+    "drawio_shape": "rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F9FF;strokeColor=#BAE6FD;strokeWidth=1.5;arcSize=4;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=30;spacingTop=10;fontSize=11;fontStyle=1;fontColor=#0284C7;",
+    "default_size": [
+      440,
+      440
+    ]
+  },
+  "aws_autoscaling": {
+    "aliases": [
+      "autoscaling",
+      "awsebautoscalinggroup",
+      "auto scaling group",
+      "initial node group",
+      "node group"
+    ],
+    "provider": "aws",
+    "drawio_shape": "rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#F97316;strokeWidth=1.5;arcSize=4;container=1;collapsible=0;verticalAlign=top;align=right;spacingRight=20;spacingTop=10;fontSize=11;fontStyle=1;fontColor=#C2410C;",
+    "default_size": [
+      390,
+      360
+    ]
+  },
+  "aws_ec2_instances": {
+    "aliases": [
+      "ec2 instances",
+      "ec2_instances"
+    ],
+    "provider": "aws",
+    "drawio_shape": "rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F97316;strokeWidth=1.5;dashed=1;arcSize=4;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=20;spacingTop=10;fontSize=11;fontStyle=1;fontColor=#C2410C;",
+    "default_size": [
+      340,
+      280
+    ]
+  },
+  "aws_ec2": {
+    "aliases": [
+      "ec2",
+      "aws ec2",
+      "elastic compute cloud",
+      "ec2 instance",
+      "server"
+    ],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#ED7100;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.ec2;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "aws_lambda": {
+    "aliases": [
+      "lambda",
+      "aws lambda",
+      "serverless lambda",
+      "lambda function"
+    ],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#ED7100;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.lambda;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "aws_eks": {
+    "aliases": [
+      "eks",
+      "elastic kubernetes service",
+      "aws eks",
+      "control plane"
+    ],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#ED7100;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.eks;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "aws_ecs": {
+    "aliases": [
+      "ecs",
+      "elastic container service",
+      "aws ecs",
+      "fargate"
+    ],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#ED7100;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.ecs;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "aws_ecr": {
+    "aliases": [
+      "ecr",
+      "elastic container registry",
+      "ecrpolicy",
+      "aws ecr"
+    ],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#ED7100;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.ecr;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "aws_s3": {
+    "aliases": [
+      "s3",
+      "s3 bucket",
+      "simple storage service",
+      "aws s3",
+      "s3 buckets"
+    ],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#7AA116;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.s3;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "aws_efs": {
+    "aliases": [
+      "efs",
+      "elastic file system",
+      "efspolicy",
+      "aws efs"
+    ],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#7AA116;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.efs;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "aws_ebs": {
+    "aliases": [
+      "ebs",
+      "elastic block store",
+      "ebspolicy",
+      "aws ebs"
+    ],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#7AA116;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.ebs;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "aws_rds": {
+    "aliases": [
+      "rds",
+      "relational database service",
+      "aws rds",
+      "aurora",
+      "mysql",
+      "postgres rds"
+    ],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#2E27AD;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.rds;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "aws_dynamodb": {
+    "aliases": [
+      "dynamodb",
+      "dynamo db",
+      "aws dynamodb",
+      "nosql"
+    ],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#2E27AD;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.dynamodb;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "aws_elb": {
+    "aliases": [
+      "elb",
+      "nlb",
+      "alb",
+      "network load balancer",
+      "target group",
+      "load balancer",
+      "application load balancer"
+    ],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#8C4FFF;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.network_load_balancer;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "aws_api_gateway": {
+    "aliases": [
+      "api gateway",
+      "aws api gateway",
+      "apigateway"
+    ],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#8C4FFF;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.api_gateway;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "aws_cloudfront": {
+    "aliases": [
+      "cloudfront",
+      "aws cloudfront",
+      "cdn"
+    ],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#8C4FFF;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.cloudfront;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "aws_route53": {
+    "aliases": [
+      "route53",
+      "route 53",
+      "dns",
+      "aws route53"
+    ],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#8C4FFF;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.route_53;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "aws_iam": {
+    "aliases": [
+      "iam",
+      "access role",
+      "rolepolicy",
+      "elbcontrollerpolicy",
+      "identity and access management"
+    ],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#DD344C;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.iam;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "aws_acm": {
+    "aliases": [
+      "acm",
+      "certificate manager",
+      "aws acm"
+    ],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#DD344C;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.certificate_manager;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "aws_ssm": {
+    "aliases": [
+      "ssm",
+      "parameter store",
+      "systems manager",
+      "ssm parameter store"
+    ],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#E5127D;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.systems_manager;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "aws_sqs": {
+    "aliases": [
+      "sqs",
+      "simple queue service",
+      "sqspolicy",
+      "queue"
+    ],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#232F3E;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.sqs;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "aws_sns": {
+    "aliases": [
+      "sns",
+      "simple notification service",
+      "notification topic"
+    ],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#E5127D;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.sns;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "gcp_vpc": {
+    "aliases": [
+      "gcp vpc",
+      "google vpc",
+      "gcp network"
+    ],
+    "provider": "gcp",
+    "drawio_shape": "swimlane;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#4285F4;startSize=28;collapsible=0;container=1;fontSize=11;fontStyle=1;",
+    "default_size": [
+      400,
+      300
+    ]
+  },
+  "gcp_compute_engine": {
+    "aliases": [
+      "gce",
+      "compute engine",
+      "gcp instance",
+      "gcp vm"
+    ],
+    "provider": "gcp",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/gcp2/compute/Compute_Engine.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "gcp_gke": {
+    "aliases": [
+      "gke",
+      "google kubernetes engine",
+      "gcp kubernetes"
+    ],
+    "provider": "gcp",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/gcp2/containers/Kubernetes_Engine.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "gcp_cloud_storage": {
+    "aliases": [
+      "gcs",
+      "cloud storage",
+      "gcp bucket",
+      "storage bucket"
+    ],
+    "provider": "gcp",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/gcp2/storage/Cloud_Storage.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "gcp_cloud_sql": {
+    "aliases": [
+      "cloud sql",
+      "gcp sql",
+      "gcp database"
+    ],
+    "provider": "gcp",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/gcp2/databases/Cloud_SQL.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "gcp_bigquery": {
+    "aliases": [
+      "bigquery",
+      "bq",
+      "gcp bigquery",
+      "data warehouse"
+    ],
+    "provider": "gcp",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/gcp2/analytics/BigQuery.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "k8s_pod": {
+    "aliases": [
+      "pod",
+      "pods",
+      "kubernetes pod",
+      "docker pod"
+    ],
+    "provider": "k8s",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/Docker.svg;verticalLabelPosition=bottom;verticalAlign=top;",
+    "default_size": [
+      50,
+      50
+    ]
+  },
+  "k8s_service": {
+    "aliases": [
+      "k8s service",
+      "svc",
+      "kubernetes service"
+    ],
+    "provider": "k8s",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/Kubernetes.svg;verticalLabelPosition=bottom;verticalAlign=top;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "k8s_ingress": {
+    "aliases": [
+      "ingress",
+      "k8s ingress",
+      "ingress controller"
+    ],
+    "provider": "k8s",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/Kubernetes.svg;verticalLabelPosition=bottom;verticalAlign=top;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "cisco_router": {
+    "aliases": [
+      "router",
+      "cisco router",
+      "network router"
+    ],
+    "provider": "cisco",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/cisco/routers/router.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "cisco_switch": {
+    "aliases": [
+      "switch",
+      "cisco switch",
+      "network switch"
+    ],
+    "provider": "cisco",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/cisco/switches/layer_2_switch.svg;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "user_actor": {
+    "aliases": [
+      "request",
+      "user",
+      "actor",
+      "client",
+      "person"
+    ],
+    "provider": "generic",
+    "drawio_shape": "shape=mxgraph.office.users.user;fillColor=#2072B8;strokeColor=none;html=1;verticalLabelPosition=bottom;verticalAlign=top;",
+    "default_size": [
+      60,
+      35
+    ]
+  },
+  "generic_container": {
+    "aliases": [
+      "generic_container",
+      "services_box",
+      "azure services",
+      "control plane",
+      "container box"
+    ],
+    "provider": "generic",
+    "drawio_shape": "swimlane;whiteSpace=wrap;html=1;fillColor=#F8F9FA;strokeColor=#6C757D;startSize=28;collapsible=0;container=1;fontSize=11;fontStyle=1;",
+    "default_size": [
+      300,
+      200
+    ]
+  },
+  "generic_box": {
+    "aliases": [
+      "box",
+      "component",
+      "node",
+      "generic_box"
+    ],
+    "provider": "generic",
+    "drawio_shape": "rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;",
+    "default_size": [
+      80,
+      60
+    ]
+  },
+  "database": {
+    "aliases": [
+      "db",
+      "database",
+      "sql",
+      "storage db"
+    ],
+    "provider": "generic",
+    "drawio_shape": "shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFFFFF;strokeColor=#4B5563;",
+    "default_size": [
+      60,
+      80
+    ]
+  }
+}
