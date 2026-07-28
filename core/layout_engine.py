@@ -34,21 +34,21 @@ def resolve_sibling_collisions(nodes: List[Node], grid_size: float = 10.0):
                     n2.y = snap_to_grid(n1.y + n1.height + 25.0, grid_size)
                     continue
 
-                # Only resolve if there is actual physical overlap (margin = -5.0)
-                if bboxes_intersect(n1.x, n1.y, n1.width, n1.height, n2.x, n2.y, n2.width, n2.height, margin=-5.0):
+                # Resolve any physical overlap (margin = -2.0)
+                if bboxes_intersect(n1.x, n1.y, n1.width, n1.height, n2.x, n2.y, n2.width, n2.height, margin=-2.0):
                     dx = (n1.x + n1.width / 2.0) - (n2.x + n2.width / 2.0)
                     dy = (n1.y + n1.height / 2.0) - (n2.y + n2.height / 2.0)
 
-                    if abs(dy) >= abs(dx):
-                        if n2.y >= n1.y:
-                            n2.y = snap_to_grid(n1.y + n1.height + 15.0, grid_size)
-                        else:
-                            n1.y = snap_to_grid(n2.y + n2.height + 15.0, grid_size)
-                    else:
+                    if abs(dx) > abs(dy):
                         if n2.x >= n1.x:
-                            n2.x = snap_to_grid(n1.x + n1.width + 15.0, grid_size)
+                            n2.x = snap_to_grid(n1.x + n1.width + 10.0, grid_size)
                         else:
-                            n1.x = snap_to_grid(n2.x + n2.width + 15.0, grid_size)
+                            n1.x = snap_to_grid(n2.x + n2.width + 10.0, grid_size)
+                    else:
+                        if n2.y >= n1.y:
+                            n2.y = snap_to_grid(n1.y + n1.height + 10.0, grid_size)
+                        else:
+                            n1.y = snap_to_grid(n2.y + n2.height + 10.0, grid_size)
 
 
 def adjust_container_bounds(groups: List[Group], nodes: List[Node], grid_size: float = 10.0):

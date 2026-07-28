@@ -137,12 +137,17 @@ def assemble_diagram_ir(
         node_id = raw_nd.get("id") or f"node_{idx+1}"
         label = raw_nd.get("label") or f"Component {idx+1}"
         raw_type = raw_nd.get("type", "generic_box")
-        resolved_type, confidence = resolve_icon_type(raw_type)
-        if resolved_type == "generic_box" or confidence < 0.8:
-            lbl_type, lbl_conf = resolve_icon_type(label)
-            if lbl_conf > confidence:
-                resolved_type = lbl_type
-                confidence = lbl_conf
+        # Always resolve icon stencil using the descriptive text label if type is generic or default
+        if raw_type in ["generic_box", "generic_container", "box", "node", "component"]:
+            resolved_type, confidence = resolve_icon_type(label)
+            if resolved_type == "generic_box":
+                resolved_type, confidence = resolve_icon_type(raw_type)
+        else:
+            resolved_type, confidence = resolve_icon_type(raw_type)
+            if resolved_type == "generic_box":
+                lbl_type, lbl_conf = resolve_icon_type(label)
+                if lbl_type != "generic_box":
+                    resolved_type, confidence = lbl_type, lbl_conf
         bbox = normalize_coordinates(raw_nd.get("bbox", [100, 100, 60, 60]), source_image_size, canvas)
 
         # Assign parent group: respect explicit parent if provided, else check containment
