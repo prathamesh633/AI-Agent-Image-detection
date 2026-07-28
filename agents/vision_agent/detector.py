@@ -235,36 +235,13 @@ def detect_with_gemini_free(image_path: str, api_key: str) -> Dict[str, Any]:
 
 
 def detect_with_gemini_free(image_path: str, api_key: str) -> Dict[str, Any]:
-    """Uses Google Gemini Flash API to extract diagram structure."""
+    """Uses Google Gemini Flash API via direct HTTP REST request to extract diagram structure."""
     import json
-    logger.info(f"Running Gemini Flash API on {image_path}...")
-
-    # Try Gemini 2.5 Flash, 2.0 Flash, or Flash-latest endpoints
-    model_names = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-flash-latest"]
-
-    try:
-        import google.generativeai as genai
-        from PIL import Image
-
-        genai.configure(api_key=api_key)
-        img = Image.open(image_path)
-
-        for mname in model_names:
-            try:
-                model = genai.GenerativeModel(mname)
-                response = model.generate_content([_HIGH_PRECISION_PROMPT, img], generation_config={"response_mime_type": "application/json"})
-                data = json.loads(response.text)
-                DetectionResult.model_validate(data)
-                logger.info(f"Successfully extracted diagram structure using SDK model {mname}")
-                return data
-            except Exception as m_err:
-                logger.debug(f"SDK Model {mname} failed: {m_err}")
-
-    except Exception as sdk_err:
-        logger.info(f"SDK call failed ({sdk_err}), trying direct HTTP request...")
-
     import base64
     import urllib.request
+    logger.info(f"Running Gemini Flash REST API on {image_path}...")
+
+    model_names = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-flash-latest"]
 
     with open(image_path, "rb") as image_file:
         base64_image = base64.b64encode(image_file.read()).decode("utf-8")
@@ -282,7 +259,7 @@ def detect_with_gemini_free(image_path: str, api_key: str) -> Dict[str, Any]:
 
         try:
             req = urllib.request.Request(url, data=json.dumps(payload).encode("utf-8"), headers={"Content-Type": "application/json"})
-            with urllib.request.urlopen(req, timeout=60) as resp:
+            with urllib.request.urlopen(req, timeout=30) as resp:
                 res_data = json.loads(resp.read().decode("utf-8"))
                 text_content = res_data["candidates"][0]["content"]["parts"][0]["text"]
                 data = json.loads(text_content)
