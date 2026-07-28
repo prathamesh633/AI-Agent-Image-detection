@@ -243,7 +243,7 @@ def detect_with_gemini_free(image_path: str, api_key: str) -> Dict[str, Any]:
     from PIL import Image
     logger.info(f"Running Gemini Flash REST API on {image_path}...")
 
-    model_names = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-flash-latest"]
+    model_names = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash", "gemini-2.0-flash-exp"]
 
     # Resize high-resolution images to fit comfortably within API payload limits
     img = Image.open(image_path)
@@ -279,6 +279,7 @@ def detect_with_gemini_free(image_path: str, api_key: str) -> Dict[str, Any]:
                     logger.info(f"Successfully extracted diagram structure using HTTP model {mname}")
                     return data
             except Exception as http_err:
+                print(f"HTTP Model {mname} attempt {attempt+1} failed: {http_err}")
                 logger.debug(f"HTTP Model {mname} attempt {attempt+1} failed: {http_err}")
                 if "503" in str(http_err) or "429" in str(http_err):
                     time.sleep(2)
