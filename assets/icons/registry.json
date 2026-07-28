@@ -20,7 +20,25 @@
   "azure_postgresql": {
     "aliases": ["postgresql", "azure postgresql", "postgres", "postgres db", "psql"],
     "provider": "azure",
-    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/databases/PostgreSQL_Server.svg;",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/databases/Azure_Database_for_PostgreSQL_Servers.svg;",
+    "default_size": [60, 60]
+  },
+  "azure_monitor": {
+    "aliases": ["azure monitor", "monitor"],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/management_governance/Monitor.svg;",
+    "default_size": [60, 60]
+  },
+  "azure_defender": {
+    "aliases": ["azure defender", "defender", "security center"],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/security/Security_Center.svg;",
+    "default_size": [60, 60]
+  },
+  "azure_advisor": {
+    "aliases": ["azure advisor", "advisor"],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/management_governance/Advisor.svg;",
     "default_size": [60, 60]
   },
   "azure_key_vault": {
