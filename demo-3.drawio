@@ -6,22 +6,22 @@
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="vpc_main" value="VPC" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#B0BEC5;strokeWidth=1.5;arcSize=3;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=40;spacingTop=10;fontSize=12;fontStyle=1;fontColor=#6B7280;" vertex="1" parent="1">
-          <mxGeometry x="280.0" y="80.0" width="710.0" height="790.0" as="geometry" />
+          <mxGeometry x="280.0" y="80.0" width="700.0" height="790.0" as="geometry" />
         </mxCell>
         <mxCell id="public_subnet" value="Public Subnet" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#A7F3D0;strokeWidth=1.5;arcSize=4;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=30;spacingTop=10;fontSize=11;fontStyle=1;fontColor=#047857;" vertex="1" parent="vpc_main">
           <mxGeometry x="350.0" y="40.0" width="200.0" height="240.0" as="geometry" />
         </mxCell>
         <mxCell id="private_subnet" value="Private Subnet" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F9FF;strokeColor=#BAE6FD;strokeWidth=1.5;arcSize=4;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=30;spacingTop=10;fontSize=11;fontStyle=1;fontColor=#0284C7;" vertex="1" parent="vpc_main">
-          <mxGeometry x="160.0" y="320.0" width="520.0" height="440.0" as="geometry" />
+          <mxGeometry x="160.0" y="320.0" width="510.0" height="440.0" as="geometry" />
         </mxCell>
         <mxCell id="initial_node_group" value="Initial node group" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#F97316;strokeWidth=1.5;arcSize=4;container=1;collapsible=0;verticalAlign=top;align=right;spacingRight=20;spacingTop=10;fontSize=11;fontStyle=1;fontColor=#C2410C;" vertex="1" parent="private_subnet">
-          <mxGeometry x="90.0" y="40.0" width="400.0" height="370.0" as="geometry" />
+          <mxGeometry x="90.0" y="40.0" width="390.0" height="370.0" as="geometry" />
         </mxCell>
         <mxCell id="ec2_instances" value="EC2 instances" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F97316;strokeWidth=1.5;dashed=1;arcSize=4;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=20;spacingTop=10;fontSize=11;fontStyle=1;fontColor=#C2410C;" vertex="1" parent="initial_node_group">
           <mxGeometry x="30.0" y="80.0" width="330.0" height="260.0" as="geometry" />
         </mxCell>
-        <mxCell id="control_plane" value="TrueFoundry&#10;Control Plane" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F8F9FA;strokeColor=#6C757D;startSize=28;collapsible=0;container=1;fontSize=11;fontStyle=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="1">
-          <mxGeometry x="40.0" y="540.0" width="300.0" height="200.0" as="geometry" />
+        <mxCell id="control_plane" value="TrueFoundry&#10;Control Plane" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="1">
+          <mxGeometry x="40.0" y="540.0" width="80.0" height="60.0" as="geometry" />
         </mxCell>
         <mxCell id="access_role" value="Access Role" style="outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#DD344C;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;" vertex="1" parent="1">
           <mxGeometry x="180.0" y="270.0" width="60.0" height="60.0" as="geometry" />
@@ -41,8 +41,8 @@
         <mxCell id="nlb" value="Network Load Balancer&#10;External/Internal" style="outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#8C4FFF;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.network_load_balancer;" vertex="1" parent="public_subnet">
           <mxGeometry x="40.0" y="80.0" width="60.0" height="60.0" as="geometry" />
         </mxCell>
-        <mxCell id="eks" value="EKS" style="outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#F58536;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.eks;" vertex="1" parent="private_subnet">
-          <mxGeometry x="40.0" y="35.0" width="60.0" height="60.0" as="geometry" />
+        <mxCell id="eks" value="EKS" style="outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#F58536;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.eks;" vertex="1" parent="vpc_main">
+          <mxGeometry x="200.0" y="340.0" width="60.0" height="60.0" as="geometry" />
         </mxCell>
         <mxCell id="pod_1" value="pod" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/Docker.svg;verticalLabelPosition=bottom;verticalAlign=top;" vertex="1" parent="ec2_instances">
           <mxGeometry x="20.0" y="50.0" width="50.0" height="50.0" as="geometry" />
@@ -59,14 +59,14 @@
         <mxCell id="acm" value="ACM" style="outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#DD344C;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.certificate_manager;" vertex="1" parent="vpc_main">
           <mxGeometry x="550.0" y="120.0" width="60.0" height="60.0" as="geometry" />
         </mxCell>
-        <mxCell id="efs" value="EFS" style="outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#7AA116;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.efs;" vertex="1" parent="initial_node_group">
-          <mxGeometry x="310.0" y="35.0" width="60.0" height="60.0" as="geometry" />
+        <mxCell id="efs" value="EFS" style="outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#7AA116;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.efs;" vertex="1" parent="vpc_main">
+          <mxGeometry x="560.0" y="360.0" width="60.0" height="60.0" as="geometry" />
         </mxCell>
-        <mxCell id="ebs" value="EBS" style="outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#7AA116;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.elastic_block_store;" vertex="1" parent="initial_node_group">
-          <mxGeometry x="310.0" y="140.0" width="60.0" height="60.0" as="geometry" />
+        <mxCell id="ebs" value="EBS" style="outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#7AA116;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.elastic_block_store;" vertex="1" parent="vpc_main">
+          <mxGeometry x="560.0" y="500.0" width="60.0" height="60.0" as="geometry" />
         </mxCell>
-        <mxCell id="sqs" value="SQS" style="outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#E5127D;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sqs;" vertex="1" parent="initial_node_group">
-          <mxGeometry x="310.0" y="280.0" width="60.0" height="60.0" as="geometry" />
+        <mxCell id="sqs" value="SQS" style="outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#E5127D;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sqs;" vertex="1" parent="vpc_main">
+          <mxGeometry x="560.0" y="640.0" width="60.0" height="60.0" as="geometry" />
         </mxCell>
         <mxCell id="e_req" value="Request" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;endArrow=classic;dashed=0;" edge="1" parent="1" source="request_node" target="nlb">
           <mxGeometry relative="1" as="geometry" />

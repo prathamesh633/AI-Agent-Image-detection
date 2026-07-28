@@ -68,7 +68,7 @@
   "nodes": [
     {
       "id": "control_plane",
-      "type": "generic_container",
+      "type": "generic_box",
       "label": "TrueFoundry\nControl Plane",
       "bbox": [
         40.0,

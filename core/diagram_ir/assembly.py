@@ -141,17 +141,17 @@ def assemble_diagram_ir(
         resolved_type, confidence = resolve_icon_type(raw_type)
         bbox = normalize_coordinates(raw_nd.get("bbox", [100, 100, 60, 60]), source_image_size, canvas)
 
-        # Cross-check containment to assign enclosing parent group
+        # Assign parent group: respect explicit parent if provided, else check containment
         best_parent = raw_nd.get("parent")
-        smallest_area = float("inf")
-
-        for grp in groups:
-            grp_bbox = group_bboxes[grp.id]
-            if contains_bbox(grp_bbox, bbox):
-                area = grp_bbox[2] * grp_bbox[3]
-                if area < smallest_area:
-                    smallest_area = area
-                    best_parent = grp.id
+        if not best_parent:
+            smallest_area = float("inf")
+            for grp in groups:
+                grp_bbox = group_bboxes[grp.id]
+                if contains_bbox(grp_bbox, bbox):
+                    area = grp_bbox[2] * grp_bbox[3]
+                    if area < smallest_area:
+                        smallest_area = area
+                        best_parent = grp.id
 
         # Compute absolute coordinates for node: if vision returned parent-relative coords (x < parent.x), convert to absolute
         abs_x, abs_y = bbox[0], bbox[1]
