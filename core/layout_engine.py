@@ -23,30 +23,31 @@ def snap_to_grid(val: float, grid_size: float = 10.0) -> float:
 
 
 def resolve_sibling_collisions(nodes: List[Node], grid_size: float = 10.0):
-    """Pushes overlapping sibling nodes apart horizontally or vertically."""
+    """Pushes significantly overlapping sibling nodes apart horizontally or vertically."""
     for i in range(len(nodes)):
         for j in range(i + 1, len(nodes)):
             n1 = nodes[i]
             n2 = nodes[j]
             if n1.parent == n2.parent:
-                if bboxes_intersect(n1.x, n1.y, n1.width, n1.height, n2.x, n2.y, n2.width, n2.height, margin=10.0):
+                # Only resolve if there is actual physical overlap (margin = -5.0)
+                if bboxes_intersect(n1.x, n1.y, n1.width, n1.height, n2.x, n2.y, n2.width, n2.height, margin=-5.0):
                     dx = (n1.x + n1.width / 2.0) - (n2.x + n2.width / 2.0)
                     dy = (n1.y + n1.height / 2.0) - (n2.y + n2.height / 2.0)
 
                     if abs(dy) >= abs(dx):
                         if n2.y >= n1.y:
-                            n2.y = snap_to_grid(n1.y + n1.height + 20.0, grid_size)
+                            n2.y = snap_to_grid(n1.y + n1.height + 15.0, grid_size)
                         else:
-                            n1.y = snap_to_grid(n2.y + n2.height + 20.0, grid_size)
+                            n1.y = snap_to_grid(n2.y + n2.height + 15.0, grid_size)
                     else:
                         if n2.x >= n1.x:
-                            n2.x = snap_to_grid(n1.x + n1.width + 20.0, grid_size)
+                            n2.x = snap_to_grid(n1.x + n1.width + 15.0, grid_size)
                         else:
-                            n1.x = snap_to_grid(n2.x + n2.width + 20.0, grid_size)
+                            n1.x = snap_to_grid(n2.x + n2.width + 15.0, grid_size)
 
 
 def adjust_container_bounds(groups: List[Group], nodes: List[Node], grid_size: float = 10.0):
-    """Adjusts container bounding boxes to enclose all contained child nodes with padding."""
+    """Adjusts container bounding box width & height to enclose all contained child nodes with padding without shifting original (x, y) positions."""
     for group in reversed(groups):
         child_nodes = [n for n in nodes if n.parent == group.id]
         child_groups = [g for g in groups if g.parent == group.id]
@@ -54,16 +55,13 @@ def adjust_container_bounds(groups: List[Group], nodes: List[Node], grid_size: f
         all_child_rects = [(n.x, n.y, n.width, n.height) for n in child_nodes] + [(g.x, g.y, g.width, g.height) for g in child_groups]
 
         if all_child_rects:
-            min_x = min(r[0] for r in all_child_rects) - 30.0
-            min_y = min(r[1] for r in all_child_rects) - 45.0
             max_x = max(r[0] + r[2] for r in all_child_rects) + 30.0
             max_y = max(r[1] + r[3] for r in all_child_rects) + 30.0
 
-            width = max(max_x - min_x, group.width, 180.0)
-            height = max(max_y - min_y, group.height, 140.0)
+            # Preserve original group.x and group.y top-left origin detected from vision
+            width = max(max_x - group.x, group.width, 180.0)
+            height = max(max_y - group.y, group.height, 140.0)
 
-            group.x = snap_to_grid(max(0.0, min_x), grid_size)
-            group.y = snap_to_grid(max(0.0, min_y), grid_size)
             group.width = snap_to_grid(width, grid_size)
             group.height = snap_to_grid(height, grid_size)
 

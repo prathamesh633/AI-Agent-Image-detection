@@ -22,9 +22,11 @@ def resolve_node_style(node: Node, registry: Dict[str, dict]) -> str:
                 break
 
     if base_style:
-        # Append label positioning so node labels render cleanly beneath icon stencils
+        # Append complete label positioning so node labels render cleanly centered beneath icon stencils
         if "verticalLabelPosition" not in base_style:
-            base_style += "verticalLabelPosition=bottom;verticalAlign=top;"
+            base_style += "verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;"
+        elif "align=" not in base_style:
+            base_style += "align=center;labelPosition=center;"
         return base_style
 
     # Generic fallback shape (box)
@@ -139,6 +141,14 @@ def add_node(
         vertex="1",
         parent=parent_id,
     )
+    node_w, node_h = node.width, node.height
+    target_type = node.type.lower()
+    if target_type in registry:
+        default_size = registry[target_type].get("default_size")
+        if default_size and len(default_size) == 2:
+            # Stencils should use registry standard aspect size rather than distorted text boxes
+            node_w, node_h = float(default_size[0]), float(default_size[1])
+
     rel_x = node.x - parent_coords[0]
     rel_y = node.y - parent_coords[1]
     ET.SubElement(
@@ -146,8 +156,8 @@ def add_node(
         "mxGeometry",
         x=str(rel_x),
         y=str(rel_y),
-        width=str(node.width),
-        height=str(node.height),
+        width=str(node_w),
+        height=str(node_h),
         **{"as": "geometry"},
     )
     return cell

@@ -735,5 +735,89 @@
       60,
       80
     ]
+  },
+  "azure_container_app": {
+    "aliases": ["container app", "container app env", "azure container app", "azure_container_app"],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/compute/Container_Instances.svg;",
+    "default_size": [60, 60]
+  },
+  "azure_entra_id": {
+    "aliases": ["entra id", "azure entra id", "active directory", "azure ad", "azure_entra_id"],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/identity/Azure_Active_Directory.svg;",
+    "default_size": [60, 60]
+  },
+  "azure_application_gateway": {
+    "aliases": ["application gateway", "app gateway", "appgw", "azure application gateway", "azure_application_gateway"],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/Application_Gateways.svg;",
+    "default_size": [60, 60]
+  },
+  "azure_nat_gateway": {
+    "aliases": ["nat gateway", "nat gw", "azure nat gateway", "azure_nat_gateway"],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/NAT.svg;",
+    "default_size": [60, 60]
+  },
+  "azure_private_endpoint": {
+    "aliases": ["private endpoint", "pe endpoint", "endpoint", "acr endpoint", "fabric endpoint", "storage endpoint", "di endpoint", "foundry endpoint", "ai search endpoint", "redis endpoint", "key vault endpoint", "azure_private_endpoint"],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/Private_Link.svg;",
+    "default_size": [50, 50]
+  },
+  "azure_dns": {
+    "aliases": ["azure dns", "private dns", "private dns zones", "azure private dns zones", "azure_dns"],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/DNS_Zones.svg;",
+    "default_size": [60, 60]
+  },
+  "azure_container_registry": {
+    "aliases": ["container registry", "acr", "azure container registry", "azure_container_registry"],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/containers/Container_Registries.svg;",
+    "default_size": [60, 60]
+  },
+  "azure_fabric": {
+    "aliases": ["fabric", "azure fabric", "microsoft fabric", "azure_fabric"],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/analytics/Analysis_Services.svg;",
+    "default_size": [60, 60]
+  },
+  "azure_document_intelligence": {
+    "aliases": ["document intelligence", "form recognizer", "azure document intelligence", "azure_document_intelligence"],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/ai_machine_learning/Cognitive_Services.svg;",
+    "default_size": [60, 60]
+  },
+  "azure_ai_foundry": {
+    "aliases": ["ai foundry", "azure ai foundry", "foundry", "azure_ai_foundry"],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/ai_machine_learning/Machine_Learning.svg;",
+    "default_size": [60, 60]
+  },
+  "azure_ai_search": {
+    "aliases": ["ai search", "cognitive search", "azure ai search", "azure_ai_search"],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/web/Search_Services.svg;",
+    "default_size": [60, 60]
+  },
+  "azure_redis": {
+    "aliases": ["redis", "azure redis", "redis cache", "azure cache for redis", "azure_redis"],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/databases/Cache_Redis.svg;",
+    "default_size": [60, 60]
+  },
+  "azure_apim": {
+    "aliases": ["apim", "api management", "api gateway", "azure apim", "azure_apim"],
+    "provider": "azure",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/integration/API_Management_Services.svg;",
+    "default_size": [60, 60]
+  },
+  "browser": {
+    "aliases": ["browser", "web browser", "client browser"],
+    "provider": "generic",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/Globe.svg;",
+    "default_size": [50, 50]
   }
 }
