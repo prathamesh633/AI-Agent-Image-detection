@@ -819,5 +819,83 @@
     "provider": "generic",
     "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/Globe.svg;",
     "default_size": [50, 50]
+  },
+  "gcp_cloud_run": {
+    "aliases": ["cloud run", "gcp cloud run", "cloud_run"],
+    "provider": "gcp",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/gcp2/compute/Cloud_Run.svg;",
+    "default_size": [60, 60]
+  },
+  "gcp_cloud_functions": {
+    "aliases": ["cloud functions", "gcp functions", "cloud_functions"],
+    "provider": "gcp",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/gcp2/compute/Cloud_Functions.svg;",
+    "default_size": [60, 60]
+  },
+  "gcp_spanner": {
+    "aliases": ["spanner", "cloud spanner", "gcp spanner"],
+    "provider": "gcp",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/gcp2/databases/Cloud_Spanner.svg;",
+    "default_size": [60, 60]
+  },
+  "gcp_pubsub": {
+    "aliases": ["pubsub", "pub sub", "cloud pubsub", "gcp pubsub"],
+    "provider": "gcp",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/gcp2/analytics/PubSub.svg;",
+    "default_size": [60, 60]
+  },
+  "gcp_dataflow": {
+    "aliases": ["dataflow", "cloud dataflow", "gcp dataflow"],
+    "provider": "gcp",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/gcp2/analytics/Dataflow.svg;",
+    "default_size": [60, 60]
+  },
+  "aws_fargate": {
+    "aliases": ["fargate", "aws fargate", "serverless containers"],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#ED7100;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.fargate;",
+    "default_size": [60, 60]
+  },
+  "aws_aurora": {
+    "aliases": ["aurora", "amazon aurora", "aurora db", "aws aurora"],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#2E27AD;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.aurora;",
+    "default_size": [60, 60]
+  },
+  "aws_eventbridge": {
+    "aliases": ["eventbridge", "event bridge", "cloudwatch events", "aws eventbridge"],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#E5127D;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.eventbridge;",
+    "default_size": [60, 60]
+  },
+  "aws_waf": {
+    "aliases": ["waf", "aws waf", "web application firewall"],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#DD344C;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.waf;",
+    "default_size": [60, 60]
+  },
+  "k8s_deployment": {
+    "aliases": ["deployment", "k8s deployment", "kubernetes deployment"],
+    "provider": "k8s",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/Kubernetes.svg;verticalLabelPosition=bottom;verticalAlign=top;",
+    "default_size": [60, 60]
+  },
+  "k8s_statefulset": {
+    "aliases": ["statefulset", "sts", "k8s statefulset"],
+    "provider": "k8s",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/Kubernetes.svg;verticalLabelPosition=bottom;verticalAlign=top;",
+    "default_size": [60, 60]
+  },
+  "cisco_firewall": {
+    "aliases": ["cisco firewall", "network firewall", "hardware firewall"],
+    "provider": "cisco",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/cisco/security/firewall.svg;",
+    "default_size": [60, 60]
+  },
+  "cloud_generic": {
+    "aliases": ["cloud", "internet", "public cloud", "external cloud"],
+    "provider": "generic",
+    "drawio_shape": "ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#F8F9FA;strokeColor=#0078D4;",
+    "default_size": [100, 60]
   }
 }

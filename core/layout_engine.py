@@ -66,12 +66,51 @@ def adjust_container_bounds(groups: List[Group], nodes: List[Node], grid_size: f
             group.height = snap_to_grid(height, grid_size)
 
 
+def route_obstacle_avoiding_edges(diagram_ir: DiagramIR):
+    """Calculates detour waypoints for edge connectors when an intermediate node blocks the direct path."""
+    node_map = {n.id: n for n in diagram_ir.nodes}
+
+    for edge in diagram_ir.edges:
+        if edge.waypoints:  # Preserve explicitly provided waypoints
+            continue
+
+        if edge.source in node_map and edge.target in node_map:
+            src = node_map[edge.source]
+            tgt = node_map[edge.target]
+
+            sc_x, sc_y = src.x + src.width / 2.0, src.y + src.height / 2.0
+            tc_x, tc_y = tgt.x + tgt.width / 2.0, tgt.y + tgt.height / 2.0
+
+            # Check if any other node intersects the bounding box line segment between src and tgt
+            for obstacle_id, obs in node_map.items():
+                if obstacle_id == edge.source or obstacle_id == edge.target:
+                    continue
+
+                if obs.parent != src.parent:
+                    continue
+
+                # Check if obstacle lies on the direct path between src and tgt
+                min_x, max_x = min(sc_x, tc_x), max(sc_x, tc_x)
+                min_y, max_y = min(sc_y, tc_y), max(sc_y, tc_y)
+
+                if (min_x <= obs.x + obs.width / 2.0 <= max_x) and (min_y <= obs.y + obs.height / 2.0 <= max_y):
+                    # Route detour waypoint around obstacle top or bottom
+                    detour_y = min(src.y, tgt.y, obs.y) - 30.0
+                    edge.waypoints = [
+                        [sc_x, detour_y],
+                        [tc_x, detour_y],
+                    ]
+                    logger.info(f"Routed detour waypoints for edge '{edge.id}' around obstacle '{obs.id}'")
+                    break
+
+
 def optimize_layout(diagram_ir: DiagramIR) -> DiagramIR:
-    """Main layout optimization pipeline: collision resolution, container padding, grid snapping."""
+    """Main layout optimization pipeline: collision resolution, container padding, obstacle-avoiding edge routing, grid snapping."""
     logger.info("Running Layout Engine optimization pass...")
 
     resolve_sibling_collisions(diagram_ir.nodes)
     adjust_container_bounds(diagram_ir.groups, diagram_ir.nodes)
+    route_obstacle_avoiding_edges(diagram_ir)
 
     for g in diagram_ir.groups:
         g.x = snap_to_grid(g.x)

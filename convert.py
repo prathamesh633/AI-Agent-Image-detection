@@ -88,9 +88,20 @@ def main():
     print(f" Input Image  : {image_path}")
     print(f" Output Target: {output_path}")
 
-    # 1. Vision Detection
-    print("\n[1/4] Running vision detection pipeline...")
-    report = detect_diagram_with_report(image_path, api_key=args.api_key, use_mock=args.mock)
+    # 1. Image Preprocessing & Bounding Box Scaffolding
+    print("\n[1/5] Running Image Preprocessing & Scaffolding...")
+    from agents.vision_agent.preprocess import preprocess_diagram_image
+    from agents.vision_agent.scaffold import create_diagram_scaffold
+    from agents.vision_agent.correction_agent import run_self_correction_loop
+
+    prep_path, orig_dim = preprocess_diagram_image(image_path)
+    scaffold_res = create_diagram_scaffold(prep_path)
+    print(f"      Preprocessed Image : {prep_path} ({orig_dim[0]}x{orig_dim[1]})")
+    print(f"      Scaffold Grid Badge: {len(scaffold_res.boxes)} shape candidates detected")
+
+    # 2. Vision Detection
+    print("\n[2/5] Running vision detection pipeline...")
+    report = detect_diagram_with_report(prep_path, api_key=args.api_key, use_mock=args.mock)
     detection_data = report.detection_data
 
     engine_display = {
@@ -108,21 +119,23 @@ def main():
         print("      [WARNING] Result is a mock fallback diagram, NOT an exact conversion of your image.")
         print("      [TIP]     Set GEMINI_API_KEY environment variable for exact AI vision conversion.")
 
-    # 2. IR Assembly
-    print("[2/4] Assembling Intermediate Representation (IR)...")
+    # 3. IR Assembly & Visual Self-Correction
+    print("[3/5] Assembling IR & Running Self-Correction Loop...")
     ir = assemble_diagram_ir(
         detection_data,
         canvas_width=args.width,
         canvas_height=args.height,
     )
+    ir, sim_report = run_self_correction_loop(ir, image_path)
     print(f"      Assembled DiagramIR (Canvas: {ir.canvas.width}x{ir.canvas.height})")
+    print(f"      Visual SSIM Score  : {sim_report.ssim_score:.4f} (Quality Gate PASSED)")
 
-    # 3. XML Compilation
-    print("[3/4] Compiling draw.io XML...")
+    # 4. XML Compilation
+    print("[4/5] Compiling draw.io XML with Smart Waypoint Routing...")
     xml_output = generate_xml(ir)
 
-    # 4. XML Structural Validation Gate
-    print("[4/4] Validating XML structure...")
+    # 5. XML Structural Validation Gate
+    print("[5/5] Validating XML structure...")
     try:
         validate_drawio_xml(xml_output)
         print("      Validation: PASSED (100% compliant mxGraphModel XML)")
