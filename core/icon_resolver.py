@@ -96,6 +96,24 @@ def resolve_icon_type(
     if best_score >= threshold:
         return best_key, round(best_score, 2)
 
+    # Smart Category Keyword Fallback Engine
+    # Map unseen or custom component text to signature cloud & devops icons
+    q_str = norm_query + " " + raw_query
+    if any(w in q_str for w in ["ai", "ml", "openai", "gpt", "model", "llm", "vertex", "sagemaker", "bedrock", "copilot", "intelligence"]):
+        return "azure_openai", 0.75
+    elif any(w in q_str for w in ["db", "database", "sql", "postgres", "mongo", "redis", "cassandra", "snowflake", "aurora", "nosql"]):
+        return "azure_postgresql", 0.75
+    elif any(w in q_str for w in ["pod", "docker", "k8s", "kubernetes", "container", "helm", "fargate"]):
+        return "docker", 0.75
+    elif any(w in q_str for w in ["git", "github", "gitlab", "jenkins", "argocd", "terraform", "pipeline", "cicd", "ci/cd"]):
+        return "gitlab", 0.75
+    elif any(w in q_str for w in ["storage", "bucket", "s3", "blob", "raw", "processed"]):
+        return "azure_storage", 0.75
+    elif any(w in q_str for w in ["iam", "role", "auth", "sso", "vault", "key", "cert", "acm", "kms", "secret"]):
+        return "aws_iam", 0.75
+    elif any(w in q_str for w in ["gateway", "ingress", "router", "firewall", "front door", "frontdoor", "load balancer", "alb", "nlb", "elb"]):
+        return "azure_load_balancer", 0.75
+
     return "generic_box", round(best_score, 2)
 
 
