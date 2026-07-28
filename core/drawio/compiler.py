@@ -149,13 +149,15 @@ def add_node(
             # Stencils should use registry standard aspect size rather than distorted text boxes
             node_w, node_h = float(default_size[0]), float(default_size[1])
 
-    rel_x = node.x - parent_coords[0]
-    rel_y = node.y - parent_coords[1]
-
-    # If child of a container group, ensure it stays inside container walls and below title bar
+    # Compute relative coordinates to parent container
     if node.parent:
+        rel_x = node.x - parent_coords[0] if node.x >= parent_coords[0] else node.x
+        rel_y = node.y - parent_coords[1] if node.y >= parent_coords[1] else node.y
         rel_x = max(15.0, rel_x)
         rel_y = max(35.0, rel_y)
+    else:
+        rel_x = node.x
+        rel_y = node.y
 
     ET.SubElement(
         cell,

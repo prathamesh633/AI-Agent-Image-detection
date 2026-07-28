@@ -5,50 +5,50 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="vpc_main" value="hava-demo-vpc-infrastructure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#B0BEC5;strokeWidth=1.5;arcSize=3;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=40;spacingTop=10;fontSize=12;fontStyle=1;fontColor=#6B7280;" vertex="1" parent="1">
+        <mxCell id="vpc_main" value="AWS VPC" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#B0BEC5;strokeWidth=1.5;arcSize=3;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=40;spacingTop=10;fontSize=12;fontStyle=1;fontColor=#6B7280;" vertex="1" parent="1">
           <mxGeometry x="600.0" y="280.0" width="600.0" height="620.0" as="geometry" />
         </mxCell>
-        <mxCell id="subnet_public_1c" value="subnet-27ce8289 - 10.20.0.0/24 demo-public-us-east-1c" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#A7F3D0;strokeWidth=1.5;arcSize=4;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=30;spacingTop=10;fontSize=11;fontStyle=1;fontColor=#047857;" vertex="1" parent="vpc_main">
-          <mxGeometry x="20.0" y="200.0" width="200.0" height="300.0" as="geometry" />
+        <mxCell id="subnet_public_1a" value="subnet-27ce8289 - 10.20.0.0/24 demo-public-us-east-1a" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#A7F3D0;strokeWidth=1.5;arcSize=4;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=30;spacingTop=10;fontSize=11;fontStyle=1;fontColor=#047857;" vertex="1" parent="vpc_main">
+          <mxGeometry x="10.0" y="200.0" width="200.0" height="300.0" as="geometry" />
         </mxCell>
-        <mxCell id="subnet_public_1d" value="subnet-03278327 - 10.20.1.0/24 demo-public-us-east-1d" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#A7F3D0;strokeWidth=1.5;arcSize=4;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=30;spacingTop=10;fontSize=11;fontStyle=1;fontColor=#047857;" vertex="1" parent="vpc_main">
-          <mxGeometry x="240.0" y="200.0" width="200.0" height="300.0" as="geometry" />
+        <mxCell id="subnet_public_1b" value="demo-public-us-east-1b" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#A7F3D0;strokeWidth=1.5;arcSize=4;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=30;spacingTop=10;fontSize=11;fontStyle=1;fontColor=#047857;" vertex="1" parent="vpc_main">
+          <mxGeometry x="230.0" y="200.0" width="200.0" height="300.0" as="geometry" />
         </mxCell>
-        <mxCell id="igw_1" value="demo-igw" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="1">
+        <mxCell id="demo_igw" value="demo-igw" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="1">
           <mxGeometry x="840.0" y="150.0" width="80.0" height="60.0" as="geometry" />
         </mxCell>
-        <mxCell id="vpg_1" value="demo-vpg-aws-us-east" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="1">
+        <mxCell id="demo_vpg" value="demo-vpg-aws-us-east" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="1">
           <mxGeometry x="890.0" y="150.0" width="80.0" height="60.0" as="geometry" />
         </mxCell>
-        <mxCell id="elb_gateway" value="demo-gateway-elb" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="vpc_main">
+        <mxCell id="demo_gateway_elb" value="demo-gateway-elb" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="vpc_main">
           <mxGeometry x="140.0" y="60.0" width="80.0" height="60.0" as="geometry" />
         </mxCell>
-        <mxCell id="elb_interface" value="demo-interface" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="vpc_main">
+        <mxCell id="demo_interface" value="demo-interface" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="vpc_main">
           <mxGeometry x="190.0" y="60.0" width="80.0" height="60.0" as="geometry" />
         </mxCell>
-        <mxCell id="elb_portal" value="demo-portal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="vpc_main">
+        <mxCell id="demo_portal" value="demo-portal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="vpc_main">
           <mxGeometry x="240.0" y="60.0" width="80.0" height="60.0" as="geometry" />
         </mxCell>
-        <mxCell id="elb_alb" value="demo-alb" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="vpc_main">
+        <mxCell id="demo_alb" value="demo-alb" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="vpc_main">
           <mxGeometry x="290.0" y="60.0" width="80.0" height="60.0" as="geometry" />
         </mxCell>
-        <mxCell id="nat_1" value="nat-0283492384u38297" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="subnet_public_1c">
+        <mxCell id="nat_gateway_1" value="nat-3283492384u38297" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="subnet_public_1a">
           <mxGeometry x="15.0" y="35.0" width="80.0" height="60.0" as="geometry" />
         </mxCell>
-        <mxCell id="efs_1" value="Demo EFS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="subnet_public_1c">
+        <mxCell id="efs_1" value="Demo EFS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="subnet_public_1a">
           <mxGeometry x="15.0" y="35.0" width="80.0" height="60.0" as="geometry" />
         </mxCell>
-        <mxCell id="nat_2" value="nat-032783278372837" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="subnet_public_1d">
+        <mxCell id="nat_gateway_2" value="nat-032783278372837" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="subnet_public_1b">
           <mxGeometry x="15.0" y="35.0" width="80.0" height="60.0" as="geometry" />
         </mxCell>
-        <mxCell id="efs_2" value="Demo EFS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="subnet_public_1d">
+        <mxCell id="efs_2" value="Demo EFS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4B5563;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="subnet_public_1b">
           <mxGeometry x="15.0" y="35.0" width="80.0" height="60.0" as="geometry" />
         </mxCell>
-        <mxCell id="s3_2" value="demo-s3-2" style="outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#7AA116;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
+        <mxCell id="s3_bucket_2" value="demo-s3-2" style="outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#7AA116;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
           <mxGeometry x="560.0" y="780.0" width="60.0" height="60.0" as="geometry" />
         </mxCell>
-        <mxCell id="s3_1" value="demo-s3-1" style="outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#7AA116;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
-          <mxGeometry x="560.0" y="890.0" width="60.0" height="60.0" as="geometry" />
+        <mxCell id="s3_bucket_1" value="demo-s3-1" style="outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#7AA116;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
+          <mxGeometry x="560.0" y="910.0" width="60.0" height="60.0" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
