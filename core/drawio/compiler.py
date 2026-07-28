@@ -248,11 +248,7 @@ def generate_xml(ir: DiagramIR, icon_registry_path: Optional[str] = None) -> str
         if group_id in abs_coords:
             return abs_coords[group_id]
         grp = group_dict[group_id]
-        if grp.parent and grp.parent in group_dict:
-            parent_x, parent_y = get_abs_coords(grp.parent)
-            abs_coords[group_id] = (grp.x + parent_x, grp.y + parent_y)
-        else:
-            abs_coords[group_id] = (grp.x, grp.y)
+        abs_coords[group_id] = (grp.x, grp.y)
         return abs_coords[group_id]
 
     for grp in ir.groups:

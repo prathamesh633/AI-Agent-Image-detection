@@ -120,6 +120,15 @@ def assemble_diagram_ir(
         if best_parent:
             grp.parent = best_parent
 
+    # Convert group relative coordinates to absolute canvas coordinates for nested groups
+    for grp in groups:
+        if grp.parent and grp.parent in group_bboxes:
+            p_bbox = group_bboxes[grp.parent]
+            if grp.x < p_bbox[0]:
+                grp.x = p_bbox[0] + grp.x
+            if grp.y < p_bbox[1]:
+                grp.y = p_bbox[1] + grp.y
+
     # 3. Process Nodes
     nodes: List[Node] = []
     raw_nodes = detection_data.get("nodes", [])

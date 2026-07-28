@@ -270,7 +270,7 @@
       "server"
     ],
     "provider": "aws",
-    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#ED7100;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.ec2;",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/aws3/compute/EC2.svg;",
     "default_size": [
       60,
       60
@@ -284,7 +284,7 @@
       "lambda function"
     ],
     "provider": "aws",
-    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#ED7100;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.lambda;",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/aws3/compute/Lambda.svg;",
     "default_size": [
       60,
       60
@@ -298,7 +298,7 @@
       "control plane"
     ],
     "provider": "aws",
-    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#ED7100;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.eks;",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/aws3/compute/EKS.svg;",
     "default_size": [
       60,
       60
@@ -312,7 +312,7 @@
       "fargate"
     ],
     "provider": "aws",
-    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#ED7100;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.ecs;",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/aws3/compute/ECS.svg;",
     "default_size": [
       60,
       60
@@ -456,7 +456,7 @@
       "aws route53"
     ],
     "provider": "aws",
-    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#8C4FFF;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.route_53;",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/aws3/network/Route_53.svg;",
     "default_size": [
       60,
       60
@@ -466,12 +466,14 @@
     "aliases": [
       "iam",
       "access role",
+      "iam role",
       "rolepolicy",
       "elbcontrollerpolicy",
-      "identity and access management"
+      "identity and access management",
+      "aws iam"
     ],
     "provider": "aws",
-    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#DD344C;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.iam;",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/aws3/security/IAM.svg;",
     "default_size": [
       60,
       60
@@ -481,10 +483,11 @@
     "aliases": [
       "acm",
       "certificate manager",
-      "aws acm"
+      "aws acm",
+      "ssl certificate"
     ],
     "provider": "aws",
-    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#DD344C;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.certificate_manager;",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/aws3/security/ACM.svg;",
     "default_size": [
       60,
       60
@@ -495,10 +498,11 @@
       "ssm",
       "parameter store",
       "systems manager",
-      "ssm parameter store"
+      "ssm parameter store",
+      "aws ssm"
     ],
     "provider": "aws",
-    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#E5127D;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.systems_manager;",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/aws3/management-tools/Systems_Manager.svg;",
     "default_size": [
       60,
       60
@@ -509,10 +513,11 @@
       "sqs",
       "simple queue service",
       "sqspolicy",
+      "aws sqs",
       "queue"
     ],
     "provider": "aws",
-    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#232F3E;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.sqs;",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/aws3/application_integration/SQS.svg;",
     "default_size": [
       60,
       60
@@ -522,10 +527,12 @@
     "aliases": [
       "sns",
       "simple notification service",
-      "notification topic"
+      "aws sns",
+      "notification topic",
+      "topic"
     ],
     "provider": "aws",
-    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#E5127D;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.sns;",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/aws3/application_integration/SNS.svg;",
     "default_size": [
       60,
       60
