@@ -29,6 +29,11 @@ def resolve_sibling_collisions(nodes: List[Node], grid_size: float = 10.0):
             n1 = nodes[i]
             n2 = nodes[j]
             if n1.parent == n2.parent:
+                # If exact overlap (same x,y), stack vertically
+                if abs(n1.x - n2.x) < 5.0 and abs(n1.y - n2.y) < 5.0:
+                    n2.y = snap_to_grid(n1.y + n1.height + 25.0, grid_size)
+                    continue
+
                 # Only resolve if there is actual physical overlap (margin = -5.0)
                 if bboxes_intersect(n1.x, n1.y, n1.width, n1.height, n2.x, n2.y, n2.width, n2.height, margin=-5.0):
                     dx = (n1.x + n1.width / 2.0) - (n2.x + n2.width / 2.0)
