@@ -237,17 +237,27 @@ def detect_with_gemini_free(image_path: str, api_key: str) -> Dict[str, Any]:
 def detect_with_gemini_free(image_path: str, api_key: str) -> Dict[str, Any]:
     """Uses Google Gemini Flash API via direct HTTP REST request to extract diagram structure."""
     import json
+    import io
     import base64
     import urllib.request
+    from PIL import Image
     logger.info(f"Running Gemini Flash REST API on {image_path}...")
 
     model_names = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-flash-latest"]
 
-    with open(image_path, "rb") as image_file:
-        base64_image = base64.b64encode(image_file.read()).decode("utf-8")
+    # Resize high-resolution images to fit comfortably within API payload limits
+    img = Image.open(image_path)
+    if img.mode != "RGB":
+        img = img.convert("RGB")
 
-    ext = os.path.splitext(image_path)[1].lower().replace(".", "")
-    mime_type = f"image/{'jpeg' if ext in ['jpg', 'jpeg'] else 'png'}"
+    max_dim = 1920
+    if img.width > max_dim or img.height > max_dim:
+        img.thumbnail((max_dim, max_dim), Image.Resampling.LANCZOS)
+
+    buffer = io.BytesIO()
+    img.save(buffer, format="JPEG", quality=85)
+    base64_image = base64.b64encode(buffer.getvalue()).decode("utf-8")
+    mime_type = "image/jpeg"
 
     for mname in model_names:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{mname}:generateContent?key={api_key}"
