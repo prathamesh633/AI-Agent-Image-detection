@@ -20,7 +20,7 @@
   "azure_postgresql": {
     "aliases": ["postgresql", "azure postgresql", "postgres", "postgres db", "psql"],
     "provider": "azure",
-    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/databases/Azure_Database_for_PostgreSQL_Servers.svg;",
+    "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/databases/SQL_Database.svg;",
     "default_size": [60, 60]
   },
   "azure_monitor": {
@@ -66,7 +66,7 @@
     "default_size": [60, 60]
   },
   "azure_sql": {
-    "aliases": ["azure sql", "sql database", "mssql", "azure_sql"],
+    "aliases": ["azure sql", "sql database", "mssql", "azure_sql", "primary database", "secondary database", "database", "sql_database"],
     "provider": "azure",
     "drawio_shape": "aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/databases/SQL_Database.svg;",
     "default_size": [60, 60]
