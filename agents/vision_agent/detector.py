@@ -189,22 +189,54 @@ def detect_with_gemini_free(image_path: str, api_key: str) -> Dict[str, Any]:
     import json
     logger.info(f"Running Free Gemini 1.5 Flash API on {image_path}...")
 
-    prompt = """
-Analyze this cloud architecture diagram and return JSON matching this exact schema:
+    _HIGH_PRECISION_PROMPT = """Analyze this architecture diagram image with 100% visual and structural precision.
+Extract every container (VNet, Subnet, VPC, Region, Resource Group, Container Box), every node component (App Service, Database, Storage, VM, Load Balancer, Functions, IAM, User, etc.), and every connecting arrow/line.
+
+Return ONLY pure valid JSON matching this exact schema:
 {
-  "source_image_size": [1200, 900],
+  "source_image_size": [width_px, height_px],
   "groups": [
-    {"id": "g1", "type": "azure_vnet" or "aws_vpc" or "subnet", "label": "VPC or Subnet Name", "bbox": [x, y, w, h], "parent": null}
+    {
+      "id": "unique_group_id",
+      "type": "azure_vnet" | "azure_subnet" | "aws_vpc" | "aws_subnet" | "generic_container",
+      "label": "Exact Text Label on Container",
+      "bbox": [x_pixel, y_pixel, width_pixel, height_pixel],
+      "parent": "parent_group_id_or_null"
+    }
   ],
   "nodes": [
-    {"id": "n1", "type": "component_type (e.g. app_service, postgresql, key_vault, ec2, eks, ebs)", "label": "Label", "bbox": [x, y, w, h], "parent": "g1"}
+    {
+      "id": "unique_node_id",
+      "type": "azure_app_service" | "azure_postgresql" | "azure_key_vault" | "azure_storage" | "aws_ec2" | "aws_s3" | "user_actor" | "generic_box",
+      "label": "Exact Text Label on Component",
+      "bbox": [x_pixel, y_pixel, width_pixel, height_pixel],
+      "parent": "enclosing_group_id_or_null"
+    }
   ],
   "edges": [
-    {"id": "e1", "source": "n1", "target": "n2", "label": "label", "direction": "forward", "style": "solid"}
+    {
+      "id": "unique_edge_id",
+      "source": "source_node_or_group_id",
+      "target": "target_node_or_group_id",
+      "label": "text_label_on_line_or_null",
+      "direction": "forward" | "backward" | "bidirectional" | "none",
+      "style": "solid" | "dashed"
+    }
   ]
 }
-Return ONLY pure valid JSON.
+
+RULES:
+1. Bounding boxes MUST use pixel coordinates [x, y, w, h] from top-left (0,0) of the source image.
+2. Parent assignment MUST be strictly enforced (if node is inside a Subnet, set parent = Subnet id).
+3. Extract ALL arrows/lines with correct source and target node IDs.
+4. Return ONLY valid JSON with no markdown wrapping.
 """
+
+
+def detect_with_gemini_free(image_path: str, api_key: str) -> Dict[str, Any]:
+    """Uses Google Gemini 1.5 Flash Free API (from Google AI Studio) to extract diagram structure."""
+    import json
+    logger.info(f"Running Free Gemini 1.5 Flash API on {image_path}...")
 
     try:
         import google.generativeai as genai
@@ -214,7 +246,7 @@ Return ONLY pure valid JSON.
         model = genai.GenerativeModel("gemini-1.5-flash")
         img = Image.open(image_path)
 
-        response = model.generate_content([prompt, img], generation_config={"response_mime_type": "application/json"})
+        response = model.generate_content([_HIGH_PRECISION_PROMPT, img], generation_config={"response_mime_type": "application/json"})
         data = json.loads(response.text)
         DetectionResult.model_validate(data)
         return data
@@ -232,7 +264,7 @@ Return ONLY pure valid JSON.
     url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
 
     payload = {
-        "contents": [{"parts": [{"text": prompt}, {"inline_data": {"mime_type": mime_type, "data": base64_image}}]}],
+        "contents": [{"parts": [{"text": _HIGH_PRECISION_PROMPT}, {"inline_data": {"mime_type": mime_type, "data": base64_image}}]}],
         "generationConfig": {"response_mime_type": "application/json", "temperature": 0.1}
     }
 
@@ -264,49 +296,13 @@ def detect_with_llm(image_path: str, api_key: str) -> Dict[str, Any]:
 
         client = openai.OpenAI(api_key=api_key)
 
-        prompt = """
-Analyze this cloud architecture diagram and extract all elements as structured JSON matching this exact schema:
-{
-  "source_image_size": [width, height],
-  "groups": [
-    {
-      "id": "vnet_1",
-      "type": "azure_vnet" or "aws_vpc" or "subnet",
-      "label": "Virtual Network name or Subnet name",
-      "bbox": [x, y, width, height],
-      "parent": null or parent_group_id
-    }
-  ],
-  "nodes": [
-    {
-      "id": "node_1",
-      "type": "component_type (e.g. app_service, postgresql, key_vault, ec2, eks, ebs)",
-      "label": "Display Label",
-      "bbox": [x, y, width, height],
-      "parent": parent_group_id or null
-    }
-  ],
-  "edges": [
-    {
-      "id": "edge_1",
-      "source": "source_node_id",
-      "target": "target_node_id",
-      "label": "connection label or null",
-      "direction": "forward",
-      "style": "solid" or "dashed"
-    }
-  ]
-}
-Return ONLY valid JSON.
-"""
-
         response = client.chat.completions.create(
             model="gpt-4o",
             messages=[
                 {
                     "role": "user",
                     "content": [
-                        {"type": "text", "text": prompt},
+                        {"type": "text", "text": _HIGH_PRECISION_PROMPT},
                         {
                             "type": "image_url",
                             "image_url": {"url": f"data:{mime_type};base64,{base64_image}"},

@@ -153,8 +153,12 @@ def add_node(
     return cell
 
 
-def add_edge(root: ET.Element, edge: Edge) -> ET.Element:
-    """Adds an Edge mxCell to root."""
+def add_edge(
+    root: ET.Element,
+    edge: Edge,
+    element_coords: Optional[Dict[str, Tuple[float, float, float, float]]] = None,
+) -> ET.Element:
+    """Adds an Edge mxCell to root with exit/entry port anchors for clean connection routing."""
     # Arrow direction styling
     if edge.direction == "forward":
         arrows = "startArrow=none;endArrow=classic;"
@@ -166,7 +170,31 @@ def add_edge(root: ET.Element, edge: Edge) -> ET.Element:
         arrows = "startArrow=none;endArrow=none;"
 
     line_style = "dashed=1;" if edge.style == "dashed" else "dashed=0;"
-    style = f"edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;{arrows}{line_style}"
+
+    # Calculate optimal connection exit/entry port anchors if bounding box coordinates are available
+    ports = ""
+    if element_coords and edge.source in element_coords and edge.target in element_coords:
+        sx, sy, sw, sh = element_coords[edge.source]
+        tx, ty, tw, th = element_coords[edge.target]
+
+        sc_x, sc_y = sx + sw / 2.0, sy + sh / 2.0
+        tc_x, tc_y = tx + tw / 2.0, ty + th / 2.0
+
+        dx = tc_x - sc_x
+        dy = tc_y - sc_y
+
+        if abs(dx) >= abs(dy):
+            if dx > 0:
+                ports = "exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
+            else:
+                ports = "exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;"
+        else:
+            if dy > 0:
+                ports = "exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
+            else:
+                ports = "exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;"
+
+    style = f"edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;{ports}{arrows}{line_style}"
 
     cell = ET.SubElement(
         root,
@@ -212,6 +240,12 @@ def generate_xml(ir: DiagramIR, icon_registry_path: Optional[str] = None) -> str
     for grp in ir.groups:
         get_abs_coords(grp.id)
 
+    # Collect absolute bounding boxes (x, y, width, height) for all nodes and groups for edge port calculations
+    element_coords: Dict[str, Tuple[float, float, float, float]] = {}
+
+    for grp in ir.groups:
+        element_coords[grp.id] = (grp.x, grp.y, grp.width, grp.height)
+
     # Add groups
     for grp in ir.groups:
         parent_coord = (0.0, 0.0)
@@ -225,10 +259,11 @@ def generate_xml(ir: DiagramIR, icon_registry_path: Optional[str] = None) -> str
         if nd.parent and nd.parent in abs_coords:
             parent_coord = abs_coords[nd.parent]
         add_node(root, nd, registry, parent_coords=parent_coord)
+        element_coords[nd.id] = (nd.x, nd.y, nd.width, nd.height)
 
     # Add edges
     for ed in ir.edges:
-        add_edge(root, ed)
+        add_edge(root, ed, element_coords=element_coords)
 
     # Serialize to string
     ET.indent(mxfile, space="  ")

@@ -75,4 +75,28 @@ def extract_text_regions(image_path: str) -> OCRResult:
         except Exception as e:
             logger.error(f"EasyOCR extraction error: {e}")
 
+    # Fallback to pytesseract if EasyOCR didn't produce items
+    if not items:
+        try:
+            import pytesseract
+            from PIL import Image
+
+            img = Image.open(image_path)
+            data = pytesseract.image_to_data(img, output_type=pytesseract.Output.DICT)
+            n_boxes = len(data["text"])
+            for i in range(n_boxes):
+                txt = data["text"][i].strip()
+                conf = float(data["conf"][i])
+                if txt and conf > 30:
+                    x, y, w, h = float(data["left"][i]), float(data["top"][i]), float(data["width"][i]), float(data["height"][i])
+                    items.append(
+                        OCRItem(
+                            text=txt,
+                            confidence=round(conf / 100.0, 2),
+                            bbox=[x, y, w, h],
+                        )
+                    )
+        except Exception as e:
+            logger.debug(f"Pytesseract fallback skipped: {e}")
+
     return OCRResult(image_size=[width, height], items=items)

@@ -4,7 +4,7 @@
 import argparse
 import sys
 import os
-from agents.vision_agent.detector import detect_diagram
+from agents.vision_agent.detector import detect_diagram, detect_diagram_with_report
 from core.diagram_ir.assembly import assemble_diagram_ir
 from core.drawio.compiler import generate_xml
 from core.drawio.xml_validator import validate_drawio_xml, XMLValidationError
@@ -90,11 +90,23 @@ def main():
 
     # 1. Vision Detection
     print("\n[1/4] Running vision detection pipeline...")
-    detection_data = detect_diagram(image_path, api_key=args.api_key, use_mock=args.mock)
-    num_nodes = len(detection_data.get("nodes", []))
-    num_groups = len(detection_data.get("groups", []))
-    num_edges = len(detection_data.get("edges", []))
-    print(f"      Detected: {num_nodes} components, {num_groups} containers, {num_edges} connections")
+    report = detect_diagram_with_report(image_path, api_key=args.api_key, use_mock=args.mock)
+    detection_data = report.detection_data
+
+    engine_display = {
+        "fixture": "Pre-configured Benchmark Extractor",
+        "mock": "Offline Mock Fallback (Warning: generic placeholder data!)",
+        "llm": "Multimodal Vision LLM (Gemini/OpenAI)",
+        "ocr_cv": "Local EasyOCR + OpenCV Extraction Engine",
+    }.get(report.engine_used, report.engine_used)
+
+    print(f"      Engine Used : {engine_display}")
+    print(f"      Detected    : {report.num_nodes} components, {report.num_groups} containers, {report.num_edges} connections")
+
+    if report.engine_used == "mock" and not args.mock:
+        print("      [WARNING] No API key provided and local vision dependencies failed.")
+        print("      [WARNING] Result is a mock fallback diagram, NOT an exact conversion of your image.")
+        print("      [TIP]     Set GEMINI_API_KEY environment variable for exact AI vision conversion.")
 
     # 2. IR Assembly
     print("[2/4] Assembling Intermediate Representation (IR)...")
