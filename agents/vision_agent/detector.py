@@ -259,6 +259,7 @@ def detect_with_gemini_free(image_path: str, api_key: str) -> Dict[str, Any]:
     base64_image = base64.b64encode(buffer.getvalue()).decode("utf-8")
     mime_type = "image/jpeg"
 
+    import time
     for mname in model_names:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{mname}:generateContent?key={api_key}"
 
@@ -267,17 +268,22 @@ def detect_with_gemini_free(image_path: str, api_key: str) -> Dict[str, Any]:
             "generationConfig": {"response_mime_type": "application/json", "temperature": 0.1}
         }
 
-        try:
-            req = urllib.request.Request(url, data=json.dumps(payload).encode("utf-8"), headers={"Content-Type": "application/json"})
-            with urllib.request.urlopen(req, timeout=30) as resp:
-                res_data = json.loads(resp.read().decode("utf-8"))
-                text_content = res_data["candidates"][0]["content"]["parts"][0]["text"]
-                data = json.loads(text_content)
-                DetectionResult.model_validate(data)
-                logger.info(f"Successfully extracted diagram structure using HTTP model {mname}")
-                return data
-        except Exception as http_err:
-            logger.debug(f"HTTP Model {mname} failed: {http_err}")
+        for attempt in range(3):
+            try:
+                req = urllib.request.Request(url, data=json.dumps(payload).encode("utf-8"), headers={"Content-Type": "application/json"})
+                with urllib.request.urlopen(req, timeout=30) as resp:
+                    res_data = json.loads(resp.read().decode("utf-8"))
+                    text_content = res_data["candidates"][0]["content"]["parts"][0]["text"]
+                    data = json.loads(text_content)
+                    DetectionResult.model_validate(data)
+                    logger.info(f"Successfully extracted diagram structure using HTTP model {mname}")
+                    return data
+            except Exception as http_err:
+                logger.debug(f"HTTP Model {mname} attempt {attempt+1} failed: {http_err}")
+                if "503" in str(http_err) or "429" in str(http_err):
+                    time.sleep(2)
+                else:
+                    break
 
     raise RuntimeError("All Gemini model endpoints (2.5-flash, 2.0-flash, flash-latest) failed.")
 
