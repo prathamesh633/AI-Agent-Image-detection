@@ -327,10 +327,14 @@ def detect_diagram(
 
     clean_path = os.path.basename(image_path).lower()
 
-    if not os.path.exists(image_path) and not use_mock and "rk_v5" not in clean_path and "demo-infrastructure" not in clean_path:
-        raise FileNotFoundError(f"Diagram image not found: {image_path}")
+    # Check for API key in environment if not passed explicitly
+    if not api_key:
+        api_key = os.getenv("GEMINI_API_KEY") or os.getenv("OPENAI_API_KEY")
 
-    # For benchmark diagrams, use benchmark extractor
+    if api_key and not use_mock:
+        return detect_with_llm(image_path, api_key)
+
+    # For explicit mock / benchmark testing
     if "rk_v5" in clean_path:
         return detect_rk_v5()
 
@@ -342,10 +346,6 @@ def detect_diagram(
 
     if use_mock:
         return mock_diagram_detection(image_path)
-
-    # Check for API key in environment if not passed explicitly
-    if not api_key:
-        api_key = os.getenv("GEMINI_API_KEY") or os.getenv("OPENAI_API_KEY")
 
     if api_key:
         return detect_with_llm(image_path, api_key)
