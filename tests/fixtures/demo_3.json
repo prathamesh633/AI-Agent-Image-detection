@@ -1,0 +1,368 @@
+{
+  "source_image_size": [
+    1200,
+    900
+  ],
+  "groups": [
+    {
+      "id": "vpc_main",
+      "type": "aws_vpc",
+      "label": "VPC",
+      "bbox": [
+        280.0,
+        80.0,
+        700.0,
+        780.0
+      ],
+      "parent": null
+    },
+    {
+      "id": "public_subnet",
+      "type": "aws_subnet",
+      "label": "Public Subnet",
+      "bbox": [
+        630.0,
+        120.0,
+        200.0,
+        240.0
+      ],
+      "parent": "vpc_main"
+    },
+    {
+      "id": "private_subnet",
+      "type": "aws_subnet_private",
+      "label": "Private Subnet",
+      "bbox": [
+        440.0,
+        400.0,
+        500.0,
+        420.0
+      ],
+      "parent": "vpc_main"
+    },
+    {
+      "id": "initial_node_group",
+      "type": "aws_autoscaling",
+      "label": "Initial node group",
+      "bbox": [
+        530.0,
+        440.0,
+        390.0,
+        360.0
+      ],
+      "parent": "private_subnet"
+    },
+    {
+      "id": "ec2_instances",
+      "type": "aws_ec2_instances",
+      "label": "EC2 instances",
+      "bbox": [
+        560.0,
+        520.0,
+        330.0,
+        260.0
+      ],
+      "parent": "initial_node_group"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "control_plane",
+      "type": "generic_container",
+      "label": "TrueFoundry\nControl Plane",
+      "bbox": [
+        40.0,
+        540.0,
+        180.0,
+        60.0
+      ],
+      "parent": null
+    },
+    {
+      "id": "access_role",
+      "type": "aws_iam",
+      "label": "Access Role",
+      "bbox": [
+        180.0,
+        270.0,
+        60.0,
+        60.0
+      ],
+      "parent": null
+    },
+    {
+      "id": "ssm_store",
+      "type": "aws_ssm",
+      "label": "SSM\nParameter Store",
+      "bbox": [
+        340.0,
+        160.0,
+        60.0,
+        60.0
+      ],
+      "parent": "vpc_main"
+    },
+    {
+      "id": "ecr",
+      "type": "aws_ecr",
+      "label": "ECR",
+      "bbox": [
+        340.0,
+        320.0,
+        60.0,
+        60.0
+      ],
+      "parent": "vpc_main"
+    },
+    {
+      "id": "s3_buckets",
+      "type": "aws_s3",
+      "label": "S3",
+      "bbox": [
+        340.0,
+        560.0,
+        60.0,
+        60.0
+      ],
+      "parent": "vpc_main"
+    },
+    {
+      "id": "target_group",
+      "type": "aws_elb",
+      "label": "Target Group",
+      "bbox": [
+        510.0,
+        200.0,
+        60.0,
+        60.0
+      ],
+      "parent": "vpc_main"
+    },
+    {
+      "id": "nlb",
+      "type": "aws_elb",
+      "label": "Network Load Balancer\nExternal/Internal",
+      "bbox": [
+        670.0,
+        200.0,
+        60.0,
+        60.0
+      ],
+      "parent": "public_subnet"
+    },
+    {
+      "id": "eks",
+      "type": "aws_eks",
+      "label": "EKS",
+      "bbox": [
+        485.0,
+        420.0,
+        55.0,
+        55.0
+      ],
+      "parent": "vpc_main"
+    },
+    {
+      "id": "pod_1",
+      "type": "k8s_pod",
+      "label": "pod",
+      "bbox": [
+        585.0,
+        570.0,
+        45.0,
+        45.0
+      ],
+      "parent": "ec2_instances"
+    },
+    {
+      "id": "pod_2",
+      "type": "k8s_pod",
+      "label": "pod",
+      "bbox": [
+        725.0,
+        570.0,
+        45.0,
+        45.0
+      ],
+      "parent": "ec2_instances"
+    },
+    {
+      "id": "pod_3",
+      "type": "k8s_pod",
+      "label": "pod",
+      "bbox": [
+        655.0,
+        670.0,
+        45.0,
+        45.0
+      ],
+      "parent": "ec2_instances"
+    },
+    {
+      "id": "request_node",
+      "type": "user_actor",
+      "label": "Request",
+      "bbox": [
+        780.0,
+        20.0,
+        60.0,
+        30.0
+      ],
+      "parent": null
+    },
+    {
+      "id": "acm",
+      "type": "aws_acm",
+      "label": "ACM",
+      "bbox": [
+        830.0,
+        200.0,
+        60.0,
+        60.0
+      ],
+      "parent": "vpc_main"
+    },
+    {
+      "id": "efs",
+      "type": "aws_efs",
+      "label": "EFS",
+      "bbox": [
+        840.0,
+        440.0,
+        60.0,
+        60.0
+      ],
+      "parent": "vpc_main"
+    },
+    {
+      "id": "ebs",
+      "type": "aws_ebs",
+      "label": "EBS",
+      "bbox": [
+        840.0,
+        580.0,
+        60.0,
+        60.0
+      ],
+      "parent": "vpc_main"
+    },
+    {
+      "id": "sqs",
+      "type": "aws_sqs",
+      "label": "SQS",
+      "bbox": [
+        840.0,
+        720.0,
+        60.0,
+        60.0
+      ],
+      "parent": "vpc_main"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_req",
+      "source": "request_node",
+      "target": "nlb",
+      "label": "Request",
+      "direction": "forward",
+      "style": "solid"
+    },
+    {
+      "id": "e_nlb_target",
+      "source": "nlb",
+      "target": "target_group",
+      "label": null,
+      "direction": "forward",
+      "style": "solid"
+    },
+    {
+      "id": "e_target_eks",
+      "source": "target_group",
+      "target": "eks",
+      "label": null,
+      "direction": "forward",
+      "style": "solid"
+    },
+    {
+      "id": "e_acm_nlb",
+      "source": "acm",
+      "target": "nlb",
+      "label": null,
+      "direction": "forward",
+      "style": "dashed"
+    },
+    {
+      "id": "e_nlb_elb_policy",
+      "source": "nlb",
+      "target": "initial_node_group",
+      "label": "ELBControllerPolicy",
+      "direction": "forward",
+      "style": "dashed"
+    },
+    {
+      "id": "e_iam_ssm",
+      "source": "access_role",
+      "target": "ssm_store",
+      "label": "RolePolicy",
+      "direction": "forward",
+      "style": "dashed"
+    },
+    {
+      "id": "e_iam_ecr",
+      "source": "access_role",
+      "target": "ecr",
+      "label": "RolePolicy",
+      "direction": "forward",
+      "style": "dashed"
+    },
+    {
+      "id": "e_iam_s3",
+      "source": "access_role",
+      "target": "s3_buckets",
+      "label": "RolePolicy",
+      "direction": "forward",
+      "style": "dashed"
+    },
+    {
+      "id": "e_ecr_policy",
+      "source": "eks",
+      "target": "ecr",
+      "label": "ECRPolicy",
+      "direction": "forward",
+      "style": "dashed"
+    },
+    {
+      "id": "e_ec2_efs",
+      "source": "ec2_instances",
+      "target": "efs",
+      "label": "EFSPolicy",
+      "direction": "forward",
+      "style": "dashed"
+    },
+    {
+      "id": "e_ec2_ebs",
+      "source": "ec2_instances",
+      "target": "ebs",
+      "label": "EBSPolicy",
+      "direction": "forward",
+      "style": "dashed"
+    },
+    {
+      "id": "e_ec2_sqs",
+      "source": "ec2_instances",
+      "target": "sqs",
+      "label": "SQSPolicy",
+      "direction": "forward",
+      "style": "dashed"
+    },
+    {
+      "id": "e_eks_proxy",
+      "source": "eks",
+      "target": "control_plane",
+      "label": "tfy-agent-proxy",
+      "direction": "forward",
+      "style": "solid"
+    }
+  ]
+}

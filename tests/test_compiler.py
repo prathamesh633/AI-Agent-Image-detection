@@ -283,7 +283,24 @@ def test_failure_negative_geometry():
         )
     assert "width must be > 0" in str(exc_info.value)
 
-    # Test XML Validator directly on negative geometry XML
+    # Test XML Validator accepts negative x/y (valid in draw.io for off-canvas positioning)
+    valid_neg_xy_xml = """<?xml version="1.0" encoding="UTF-8"?>
+    <mxfile>
+      <diagram id="d1">
+        <mxGraphModel>
+          <root>
+            <mxCell id="0" />
+            <mxCell id="1" parent="0" />
+            <mxCell id="n1" value="A" vertex="1" parent="1">
+              <mxGeometry x="-10" y="-20" width="50" height="50" as="geometry" />
+            </mxCell>
+          </root>
+        </mxGraphModel>
+      </diagram>
+    </mxfile>"""
+    assert validate_drawio_xml(valid_neg_xy_xml) is True
+
+    # Test XML Validator rejects negative width
     bad_xml = """<?xml version="1.0" encoding="UTF-8"?>
     <mxfile>
       <diagram id="d1">
@@ -292,7 +309,7 @@ def test_failure_negative_geometry():
             <mxCell id="0" />
             <mxCell id="1" parent="0" />
             <mxCell id="n1" value="A" vertex="1" parent="1">
-              <mxGeometry x="-10" y="10" width="50" height="50" as="geometry" />
+              <mxGeometry x="10" y="10" width="-50" height="50" as="geometry" />
             </mxCell>
           </root>
         </mxGraphModel>
@@ -300,4 +317,4 @@ def test_failure_negative_geometry():
     </mxfile>"""
     with pytest.raises(XMLValidationError) as exc_info:
         validate_drawio_xml(bad_xml)
-    assert "Negative geometry detected: x='-10.0'" in str(exc_info.value)
+    assert "Negative geometry detected: width='-50.0'" in str(exc_info.value)

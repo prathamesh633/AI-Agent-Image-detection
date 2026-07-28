@@ -1,0 +1,366 @@
+{
+  "source_image_size": [
+    2266,
+    1520
+  ],
+  "groups": [
+    {
+      "id": "vpc-06754f62",
+      "type": "aws_vpc",
+      "label": "vpc-06754f62",
+      "bbox": [
+        120,
+        300,
+        580,
+        480
+      ],
+      "parent": null
+    },
+    {
+      "id": "subnet-6846e00f",
+      "type": "aws_subnet",
+      "label": "subnet-6846e00f",
+      "bbox": [
+        300,
+        340,
+        370,
+        320
+      ],
+      "parent": "vpc-06754f62"
+    },
+    {
+      "id": "vpc-9eff53e6",
+      "type": "aws_vpc",
+      "label": "vpc-9eff53e6",
+      "bbox": [
+        730,
+        300,
+        750,
+        480
+      ],
+      "parent": null
+    },
+    {
+      "id": "subnet-cffe0ae0_mid",
+      "type": "aws_subnet",
+      "label": "subnet-cffe0ae0",
+      "bbox": [
+        880,
+        340,
+        570,
+        320
+      ],
+      "parent": "vpc-9eff53e6"
+    },
+    {
+      "id": "subnet-cffe0ae0_right",
+      "type": "aws_subnet",
+      "label": "subnet-cffe0ae0",
+      "bbox": [
+        1520,
+        300,
+        500,
+        480
+      ],
+      "parent": null
+    },
+    {
+      "id": "asg_left",
+      "type": "aws_autoscaling",
+      "label": "awseb-e-jwyugkhwcd-stack-AWSEBAutoScalingGroup-4Y3L33XVAEKQ",
+      "bbox": [
+        120,
+        820,
+        380,
+        260
+      ],
+      "parent": null
+    },
+    {
+      "id": "asg_mid",
+      "type": "aws_autoscaling",
+      "label": "awseb-e-gh4zuwbp5n-stack-AWSEBAutoScalingGroup-1LHZ7K5PKCX79",
+      "bbox": [
+        1040,
+        820,
+        380,
+        260
+      ],
+      "parent": null
+    }
+  ],
+  "nodes": [
+    {
+      "id": "elb_top",
+      "type": "aws_elb",
+      "label": "awseb-e-j-AWSEBLoa-480S3UOS0CNE-1824193997.us-west-1.elb.amazonaws.com",
+      "bbox": [
+        1380,
+        60,
+        65,
+        65
+      ],
+      "parent": null
+    },
+    {
+      "id": "eni-cc244ded",
+      "type": "aws_eni",
+      "label": "eni-cc244ded",
+      "bbox": [
+        450,
+        420,
+        60,
+        60
+      ],
+      "parent": "subnet-6846e00f"
+    },
+    {
+      "id": "eni-39da33af_mid",
+      "type": "aws_eni",
+      "label": "eni-39da33af",
+      "bbox": [
+        950,
+        420,
+        60,
+        60
+      ],
+      "parent": "subnet-cffe0ae0_mid"
+    },
+    {
+      "id": "eni-0ad129dd3f06ef1f",
+      "type": "aws_eni",
+      "label": "eni-0ad129dd3f06ef1f",
+      "bbox": [
+        1260,
+        420,
+        60,
+        60
+      ],
+      "parent": "subnet-cffe0ae0_mid"
+    },
+    {
+      "id": "eni-39da33af_right",
+      "type": "aws_eni",
+      "label": "eni-39da33af",
+      "bbox": [
+        1720,
+        420,
+        60,
+        60
+      ],
+      "parent": "subnet-cffe0ae0_right"
+    },
+    {
+      "id": "i-080f72df86955a447",
+      "type": "aws_ec2",
+      "label": "i-080f72df86955a447",
+      "bbox": [
+        270,
+        890,
+        60,
+        60
+      ],
+      "parent": "asg_left"
+    },
+    {
+      "id": "i-0185f7619740e35ad_mid",
+      "type": "aws_ec2",
+      "label": "i-0185f7619740e35ad",
+      "bbox": [
+        730,
+        930,
+        60,
+        60
+      ],
+      "parent": null
+    },
+    {
+      "id": "i-0be786408353b6a99",
+      "type": "aws_ec2",
+      "label": "i-0be786408353b6a99",
+      "bbox": [
+        1200,
+        890,
+        60,
+        60
+      ],
+      "parent": "asg_mid"
+    },
+    {
+      "id": "i-0185f7619740e35ad_right",
+      "type": "aws_ec2",
+      "label": "i-0185f7619740e35ad",
+      "bbox": [
+        1740,
+        890,
+        60,
+        60
+      ],
+      "parent": null
+    },
+    {
+      "id": "vol-06d685ec8adbd5e39",
+      "type": "aws_ebs",
+      "label": "vol-06d685ec8adbd5e39",
+      "bbox": [
+        180,
+        1180,
+        55,
+        55
+      ],
+      "parent": null
+    },
+    {
+      "id": "vol-07e90526780fc659f_mid",
+      "type": "aws_ebs",
+      "label": "vol-07e90526780fc659f",
+      "bbox": [
+        730,
+        1180,
+        55,
+        55
+      ],
+      "parent": null
+    },
+    {
+      "id": "vol-07d73a44bd973d7a0_1",
+      "type": "aws_ebs",
+      "label": "vol-07d73a44bd973d7a0",
+      "bbox": [
+        1050,
+        1180,
+        55,
+        55
+      ],
+      "parent": null
+    },
+    {
+      "id": "vol-07d73a44bd973d7a0_2",
+      "type": "aws_ebs",
+      "label": "vol-07d73a44bd973d7a0",
+      "bbox": [
+        1280,
+        1180,
+        55,
+        55
+      ],
+      "parent": null
+    },
+    {
+      "id": "vol-07d73a44bd973d7a0_3",
+      "type": "aws_ebs",
+      "label": "vol-07d73a44bd973d7a0",
+      "bbox": [
+        1520,
+        1180,
+        55,
+        55
+      ],
+      "parent": null
+    },
+    {
+      "id": "vol-07e90526780fc659f_r1",
+      "type": "aws_ebs",
+      "label": "vol-07e90526780fc659f",
+      "bbox": [
+        1740,
+        1180,
+        55,
+        55
+      ],
+      "parent": null
+    },
+    {
+      "id": "vol-07e90526780fc659f_r2",
+      "type": "aws_ebs",
+      "label": "vol-07e90526780fc659f",
+      "bbox": [
+        1960,
+        1180,
+        55,
+        55
+      ],
+      "parent": null
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_elb_1",
+      "source": "elb_top",
+      "target": "eni-0ad129dd3f06ef1f",
+      "direction": "forward"
+    },
+    {
+      "id": "e_elb_2",
+      "source": "elb_top",
+      "target": "eni-39da33af_right",
+      "direction": "forward"
+    },
+    {
+      "id": "e_eni_1",
+      "source": "eni-cc244ded",
+      "target": "i-080f72df86955a447",
+      "direction": "forward"
+    },
+    {
+      "id": "e_eni_2",
+      "source": "eni-39da33af_mid",
+      "target": "i-0185f7619740e35ad_mid",
+      "direction": "forward"
+    },
+    {
+      "id": "e_eni_3",
+      "source": "eni-0ad129dd3f06ef1f",
+      "target": "i-0be786408353b6a99",
+      "direction": "forward"
+    },
+    {
+      "id": "e_eni_4",
+      "source": "eni-39da33af_right",
+      "target": "i-0185f7619740e35ad_right",
+      "direction": "forward"
+    },
+    {
+      "id": "e_ec2_vol_1",
+      "source": "i-080f72df86955a447",
+      "target": "vol-06d685ec8adbd5e39",
+      "direction": "forward"
+    },
+    {
+      "id": "e_ec2_vol_2",
+      "source": "i-0185f7619740e35ad_mid",
+      "target": "vol-07e90526780fc659f_mid",
+      "direction": "forward"
+    },
+    {
+      "id": "e_ec2_vol_3",
+      "source": "i-0be786408353b6a99",
+      "target": "vol-07d73a44bd973d7a0_1",
+      "direction": "forward"
+    },
+    {
+      "id": "e_ec2_vol_4",
+      "source": "i-0be786408353b6a99",
+      "target": "vol-07d73a44bd973d7a0_2",
+      "direction": "forward"
+    },
+    {
+      "id": "e_ec2_vol_5",
+      "source": "i-0be786408353b6a99",
+      "target": "vol-07d73a44bd973d7a0_3",
+      "direction": "forward"
+    },
+    {
+      "id": "e_ec2_vol_6",
+      "source": "i-0185f7619740e35ad_right",
+      "target": "vol-07e90526780fc659f_r1",
+      "direction": "forward"
+    },
+    {
+      "id": "e_ec2_vol_7",
+      "source": "i-0185f7619740e35ad_right",
+      "target": "vol-07e90526780fc659f_r2",
+      "direction": "forward"
+    }
+  ]
+}

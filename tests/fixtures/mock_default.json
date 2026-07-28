@@ -1,0 +1,100 @@
+{
+  "source_image_size": [
+    1000,
+    750
+  ],
+  "groups": [
+    {
+      "id": "vnet_main",
+      "type": "azure_vnet",
+      "label": "Virtual Network",
+      "bbox": [
+        0.08,
+        0.1,
+        0.84,
+        0.8
+      ],
+      "parent": null
+    },
+    {
+      "id": "subnet_app",
+      "type": "azure_subnet",
+      "label": "App Subnet",
+      "bbox": [
+        0.12,
+        0.18,
+        0.36,
+        0.65
+      ],
+      "parent": "vnet_main"
+    },
+    {
+      "id": "subnet_db",
+      "type": "azure_subnet",
+      "label": "Data Subnet",
+      "bbox": [
+        0.52,
+        0.18,
+        0.36,
+        0.65
+      ],
+      "parent": "vnet_main"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "app_svc",
+      "type": "App Service",
+      "label": "Web Application",
+      "bbox": [
+        0.16,
+        0.28,
+        0.08,
+        0.1
+      ],
+      "parent": "subnet_app"
+    },
+    {
+      "id": "pg_db",
+      "type": "PostgreSQL",
+      "label": "Primary Database",
+      "bbox": [
+        0.56,
+        0.28,
+        0.08,
+        0.1
+      ],
+      "parent": "subnet_db"
+    },
+    {
+      "id": "key_vault",
+      "type": "Key Vault",
+      "label": "Secrets Vault",
+      "bbox": [
+        0.56,
+        0.52,
+        0.08,
+        0.1
+      ],
+      "parent": "subnet_db"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_db_connect",
+      "source": "app_svc",
+      "target": "pg_db",
+      "label": "SQL Query",
+      "direction": "forward",
+      "style": "solid"
+    },
+    {
+      "id": "e_kv_auth",
+      "source": "app_svc",
+      "target": "key_vault",
+      "label": "Get Secret",
+      "direction": "forward",
+      "style": "dashed"
+    }
+  ]
+}

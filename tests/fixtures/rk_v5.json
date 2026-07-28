@@ -1,0 +1,458 @@
+{
+  "source_image_size": [
+    1700,
+    600
+  ],
+  "groups": [
+    {
+      "id": "rk_vnet",
+      "type": "azure_vnet",
+      "label": "RK Vnet",
+      "bbox": [
+        290,
+        130,
+        1300,
+        270
+      ],
+      "parent": null
+    },
+    {
+      "id": "public_subnet",
+      "type": "azure_subnet",
+      "label": "Public Subnet",
+      "bbox": [
+        370,
+        170,
+        110,
+        190
+      ],
+      "parent": "rk_vnet"
+    },
+    {
+      "id": "app_subnet",
+      "type": "azure_subnet",
+      "label": "Container App Subnet",
+      "bbox": [
+        515,
+        170,
+        165,
+        190
+      ],
+      "parent": "rk_vnet"
+    },
+    {
+      "id": "app_env",
+      "type": "azure_container_app",
+      "label": "Container App Env",
+      "bbox": [
+        530,
+        190,
+        135,
+        160
+      ],
+      "parent": "app_subnet"
+    },
+    {
+      "id": "pe_subnet",
+      "type": "azure_subnet",
+      "label": "Private Endpoint Subnet",
+      "bbox": [
+        710,
+        170,
+        860,
+        190
+      ],
+      "parent": "rk_vnet"
+    },
+    {
+      "id": "services_box",
+      "type": "generic_container",
+      "label": "Azure Services",
+      "bbox": [
+        710,
+        435,
+        860,
+        135
+      ],
+      "parent": null
+    }
+  ],
+  "nodes": [
+    {
+      "id": "node_user",
+      "type": "user_actor",
+      "label": "User",
+      "bbox": [
+        35,
+        205,
+        50,
+        50
+      ],
+      "parent": null
+    },
+    {
+      "id": "node_browser",
+      "type": "browser",
+      "label": "Browser",
+      "bbox": [
+        140,
+        205,
+        60,
+        50
+      ],
+      "parent": null
+    },
+    {
+      "id": "node_entra_id",
+      "type": "azure_entra_id",
+      "label": "Entra ID",
+      "bbox": [
+        135,
+        440,
+        65,
+        65
+      ],
+      "parent": null
+    },
+    {
+      "id": "node_app_gw",
+      "type": "azure_application_gateway",
+      "label": "Application Gateway",
+      "bbox": [
+        400,
+        230,
+        50,
+        50
+      ],
+      "parent": "public_subnet"
+    },
+    {
+      "id": "node_container_app",
+      "type": "azure_container_app",
+      "label": "Container APP",
+      "bbox": [
+        560,
+        270,
+        55,
+        55
+      ],
+      "parent": "app_env"
+    },
+    {
+      "id": "node_nat_gw",
+      "type": "azure_nat_gateway",
+      "label": "NAT Gateway",
+      "bbox": [
+        505,
+        365,
+        45,
+        45
+      ],
+      "parent": "rk_vnet"
+    },
+    {
+      "id": "pe_acr",
+      "type": "azure_private_endpoint",
+      "label": "ACR Endpoint",
+      "bbox": [
+        735,
+        260,
+        35,
+        35
+      ],
+      "parent": "pe_subnet"
+    },
+    {
+      "id": "pe_fabric",
+      "type": "azure_private_endpoint",
+      "label": "Fabric Endpoint",
+      "bbox": [
+        835,
+        260,
+        35,
+        35
+      ],
+      "parent": "pe_subnet"
+    },
+    {
+      "id": "pe_storage",
+      "type": "azure_private_endpoint",
+      "label": "Storage Endpoint",
+      "bbox": [
+        935,
+        260,
+        35,
+        35
+      ],
+      "parent": "pe_subnet"
+    },
+    {
+      "id": "pe_di",
+      "type": "azure_private_endpoint",
+      "label": "DI Endpoint",
+      "bbox": [
+        1035,
+        260,
+        35,
+        35
+      ],
+      "parent": "pe_subnet"
+    },
+    {
+      "id": "pe_foundry",
+      "type": "azure_private_endpoint",
+      "label": "Foundry Endpoint",
+      "bbox": [
+        1135,
+        260,
+        35,
+        35
+      ],
+      "parent": "pe_subnet"
+    },
+    {
+      "id": "pe_search",
+      "type": "azure_private_endpoint",
+      "label": "AI Search Endpoint",
+      "bbox": [
+        1235,
+        260,
+        35,
+        35
+      ],
+      "parent": "pe_subnet"
+    },
+    {
+      "id": "pe_redis",
+      "type": "azure_private_endpoint",
+      "label": "Redis Endpoint",
+      "bbox": [
+        1335,
+        260,
+        35,
+        35
+      ],
+      "parent": "pe_subnet"
+    },
+    {
+      "id": "pe_kv",
+      "type": "azure_private_endpoint",
+      "label": "Key Vault Endpoint",
+      "bbox": [
+        1435,
+        260,
+        35,
+        35
+      ],
+      "parent": "pe_subnet"
+    },
+    {
+      "id": "node_dns",
+      "type": "azure_dns",
+      "label": "Azure Private DNS Zones",
+      "bbox": [
+        1600,
+        260,
+        45,
+        45
+      ],
+      "parent": null
+    },
+    {
+      "id": "svc_acr",
+      "type": "azure_container_registry",
+      "label": "Container Registry",
+      "bbox": [
+        730,
+        465,
+        45,
+        45
+      ],
+      "parent": "services_box"
+    },
+    {
+      "id": "svc_fabric",
+      "type": "azure_fabric",
+      "label": "Fabric",
+      "bbox": [
+        830,
+        465,
+        45,
+        45
+      ],
+      "parent": "services_box"
+    },
+    {
+      "id": "svc_storage",
+      "type": "azure_storage",
+      "label": "Blob Storage",
+      "bbox": [
+        930,
+        465,
+        45,
+        45
+      ],
+      "parent": "services_box"
+    },
+    {
+      "id": "svc_di",
+      "type": "azure_document_intelligence",
+      "label": "Document Intelligence",
+      "bbox": [
+        1030,
+        465,
+        45,
+        45
+      ],
+      "parent": "services_box"
+    },
+    {
+      "id": "svc_foundry",
+      "type": "azure_ai_foundry",
+      "label": "AI Foundry",
+      "bbox": [
+        1130,
+        465,
+        45,
+        45
+      ],
+      "parent": "services_box"
+    },
+    {
+      "id": "svc_search",
+      "type": "azure_ai_search",
+      "label": "AI Search",
+      "bbox": [
+        1230,
+        465,
+        45,
+        45
+      ],
+      "parent": "services_box"
+    },
+    {
+      "id": "svc_redis",
+      "type": "azure_redis",
+      "label": "Redis",
+      "bbox": [
+        1330,
+        465,
+        45,
+        45
+      ],
+      "parent": "services_box"
+    },
+    {
+      "id": "svc_kv",
+      "type": "azure_key_vault",
+      "label": "Key Vault",
+      "bbox": [
+        1430,
+        465,
+        45,
+        45
+      ],
+      "parent": "services_box"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_user_browser",
+      "source": "node_user",
+      "target": "node_browser",
+      "direction": "forward"
+    },
+    {
+      "id": "e_browser_appgw",
+      "source": "node_browser",
+      "target": "node_app_gw",
+      "direction": "forward"
+    },
+    {
+      "id": "e_browser_entra",
+      "source": "node_browser",
+      "target": "node_entra_id",
+      "direction": "forward"
+    },
+    {
+      "id": "e_appgw_app",
+      "source": "node_app_gw",
+      "target": "node_container_app",
+      "direction": "forward"
+    },
+    {
+      "id": "e_app_nat",
+      "source": "node_container_app",
+      "target": "node_nat_gw",
+      "direction": "forward"
+    },
+    {
+      "id": "e_nat_entra",
+      "source": "node_nat_gw",
+      "target": "node_entra_id",
+      "direction": "forward"
+    },
+    {
+      "id": "e_app_pe",
+      "source": "node_container_app",
+      "target": "pe_subnet",
+      "direction": "forward"
+    },
+    {
+      "id": "e_pe_acr",
+      "source": "pe_acr",
+      "target": "svc_acr",
+      "style": "dashed",
+      "direction": "forward"
+    },
+    {
+      "id": "e_pe_fabric",
+      "source": "pe_fabric",
+      "target": "svc_fabric",
+      "style": "dashed",
+      "direction": "forward"
+    },
+    {
+      "id": "e_pe_storage",
+      "source": "pe_storage",
+      "target": "svc_storage",
+      "style": "dashed",
+      "direction": "forward"
+    },
+    {
+      "id": "e_pe_di",
+      "source": "pe_di",
+      "target": "svc_di",
+      "style": "dashed",
+      "direction": "forward"
+    },
+    {
+      "id": "e_pe_foundry",
+      "source": "pe_foundry",
+      "target": "svc_foundry",
+      "style": "dashed",
+      "direction": "forward"
+    },
+    {
+      "id": "e_pe_search",
+      "source": "pe_search",
+      "target": "svc_search",
+      "style": "dashed",
+      "direction": "forward"
+    },
+    {
+      "id": "e_pe_redis",
+      "source": "pe_redis",
+      "target": "svc_redis",
+      "style": "dashed",
+      "direction": "forward"
+    },
+    {
+      "id": "e_pe_kv",
+      "source": "pe_kv",
+      "target": "svc_kv",
+      "style": "dashed",
+      "direction": "forward"
+    }
+  ]
+}

@@ -65,19 +65,26 @@ def validate_drawio_xml(xml_str: str) -> bool:
                     f"Edge '{cell.get('id')}' references non-existent target ID '{target_id}'"
                 )
 
-    # 4. Non-negative geometry
+    # 4. Non-negative geometry (width and height only — negative x/y are valid in draw.io)
     geometries = root.findall(".//mxGeometry")
     for geom in geometries:
+        # Validate all numeric attributes are parseable
         for attr in ["x", "y", "width", "height"]:
             val_str = geom.get(attr)
             if val_str is not None:
                 try:
-                    val = float(val_str)
-                    if val < 0:
-                        raise XMLValidationError(
-                            f"Negative geometry detected: {attr}='{val}' in <mxGeometry>"
-                        )
+                    float(val_str)
                 except ValueError:
                     raise XMLValidationError(f"Invalid float in <mxGeometry> attribute {attr}: '{val_str}'")
+
+        # Only width and height must be non-negative
+        for attr in ["width", "height"]:
+            val_str = geom.get(attr)
+            if val_str is not None:
+                val = float(val_str)
+                if val < 0:
+                    raise XMLValidationError(
+                        f"Negative geometry detected: {attr}='{val}' in <mxGeometry>"
+                    )
 
     return True

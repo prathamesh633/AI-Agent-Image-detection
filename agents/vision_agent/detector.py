@@ -1049,7 +1049,6 @@ def detect_with_ocr_and_cv(image_path: str) -> Dict[str, Any]:
             }
     except Exception as e:
         logger.warning(f"Automated OCR/CV detection fallback: {e}")
-        logger.warning(f"Automated OCR/CV detection fallback: {e}")
 
     return mock_diagram_detection(image_path)
 
@@ -1107,7 +1106,7 @@ Return ONLY pure valid JSON.
     }
 
     req = urllib.request.Request(url, data=json.dumps(payload).encode("utf-8"), headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req) as resp:
+    with urllib.request.urlopen(req, timeout=60) as resp:
         res_data = json.loads(resp.read().decode("utf-8"))
         text_content = res_data["candidates"][0]["content"]["parts"][0]["text"]
         data = json.loads(text_content)

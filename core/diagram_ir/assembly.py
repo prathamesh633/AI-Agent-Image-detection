@@ -204,6 +204,7 @@ def assemble_diagram_ir(
         from core.layout_engine import optimize_layout
         diagram_ir = optimize_layout(diagram_ir)
     except Exception as err:
-        pass
+        import logging
+        logging.getLogger(__name__).warning(f"Layout optimization failed (non-fatal): {err}")
 
     return diagram_ir
