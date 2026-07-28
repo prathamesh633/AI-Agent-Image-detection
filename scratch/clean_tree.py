@@ -1,11 +1,11 @@
 import os
 
-# 1. Rename files if present
+# 1. Rename files if present safely using os.replace
 if os.path.exists("sample architecture.png"):
-    os.rename("sample architecture.png", "sample_architecture.png")
+    os.replace("sample architecture.png", "sample_architecture.png")
 
 if os.path.exists("sample_architecture.drawio"):
-    os.rename("sample_architecture.drawio", "sample_architecture.drawio")
+    os.replace("sample_architecture.drawio", "sample_architecture.drawio")
 
 # 2. Replace sample/sample in files
 for root, dirs, files in os.walk("."):
