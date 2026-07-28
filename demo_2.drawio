@@ -6,22 +6,22 @@
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="vnet_main" value="Virtual Network" style="swimlane;whiteSpace=wrap;html=1;fillColor=#EBF3FA;strokeColor=#0078D4;startSize=28;collapsible=0;container=1;fontSize=11;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="130.0" y="160.0" width="1010.0" height="720.0" as="geometry" />
+          <mxGeometry x="100.0" y="90.0" width="1010.0" height="720.0" as="geometry" />
         </mxCell>
         <mxCell id="subnet_app" value="App Subnet" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0078D4;startSize=28;collapsible=0;container=1;fontSize=11;fontStyle=1;" vertex="1" parent="vnet_main">
-          <mxGeometry x="30.0" y="50.0" width="430.0" height="580.0" as="geometry" />
+          <mxGeometry x="40.0" y="70.0" width="430.0" height="580.0" as="geometry" />
         </mxCell>
         <mxCell id="subnet_db" value="Data Subnet" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0078D4;startSize=28;collapsible=0;container=1;fontSize=11;fontStyle=1;" vertex="1" parent="vnet_main">
-          <mxGeometry x="510.0" y="50.0" width="430.0" height="580.0" as="geometry" />
+          <mxGeometry x="520.0" y="70.0" width="430.0" height="580.0" as="geometry" />
         </mxCell>
-        <mxCell id="app_svc" value="Web Application" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/app_services/App_Services.svg;verticalLabelPosition=bottom;verticalAlign=top;" vertex="1" parent="subnet_app">
-          <mxGeometry x="-100.0" y="-120.0" width="100.0" height="90.0" as="geometry" />
+        <mxCell id="app_svc" value="Web Application" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/app_services/App_Services.svg;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="subnet_app">
+          <mxGeometry x="-50.0" y="0.0" width="60.0" height="60.0" as="geometry" />
         </mxCell>
-        <mxCell id="pg_db" value="Primary Database" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/databases/Azure_Database_PostgreSQL_Server.svg;verticalLabelPosition=bottom;verticalAlign=top;" vertex="1" parent="subnet_db">
-          <mxGeometry x="-100.0" y="-120.0" width="100.0" height="90.0" as="geometry" />
+        <mxCell id="pg_db" value="Primary Database" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/databases/Azure_Database_PostgreSQL_Server.svg;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="subnet_db">
+          <mxGeometry x="-50.0" y="0.0" width="60.0" height="60.0" as="geometry" />
         </mxCell>
-        <mxCell id="key_vault" value="Secrets Vault" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/security/Key_Vaults.svg;verticalLabelPosition=bottom;verticalAlign=top;" vertex="1" parent="subnet_db">
-          <mxGeometry x="-100.0" y="100.0" width="100.0" height="90.0" as="geometry" />
+        <mxCell id="key_vault" value="Secrets Vault" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/security/Key_Vaults.svg;verticalLabelPosition=bottom;verticalAlign=top;align=center;labelPosition=center;" vertex="1" parent="subnet_db">
+          <mxGeometry x="-50.0" y="220.0" width="60.0" height="60.0" as="geometry" />
         </mxCell>
         <mxCell id="e_db_connect" value="SQL Query" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;startArrow=none;endArrow=classic;dashed=0;" edge="1" parent="1" source="app_svc" target="pg_db">
           <mxGeometry relative="1" as="geometry" />

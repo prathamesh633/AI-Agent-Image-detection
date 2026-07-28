@@ -184,12 +184,7 @@ def detect_with_ocr_and_cv(image_path: str) -> Dict[str, Any]:
     return mock_diagram_detection(image_path)
 
 
-def detect_with_gemini_free(image_path: str, api_key: str) -> Dict[str, Any]:
-    """Uses Google Gemini 1.5 Flash Free API (from Google AI Studio) to extract diagram structure."""
-    import json
-    logger.info(f"Running Free Gemini 1.5 Flash API on {image_path}...")
-
-    _HIGH_PRECISION_PROMPT = """Analyze this architecture diagram image with 100% visual and structural precision.
+_HIGH_PRECISION_PROMPT = """Analyze this architecture diagram image with 100% visual and structural precision.
 Extract every container (VNet, Subnet, VPC, Region, Resource Group, Container Box), every node component (App Service, Database, Storage, VM, Load Balancer, Functions, IAM, User, etc.), and every connecting arrow/line.
 
 Return ONLY pure valid JSON matching this exact schema:
@@ -238,18 +233,33 @@ def detect_with_gemini_free(image_path: str, api_key: str) -> Dict[str, Any]:
     import json
     logger.info(f"Running Free Gemini 1.5 Flash API on {image_path}...")
 
+
+def detect_with_gemini_free(image_path: str, api_key: str) -> Dict[str, Any]:
+    """Uses Google Gemini Flash API to extract diagram structure."""
+    import json
+    logger.info(f"Running Gemini Flash API on {image_path}...")
+
+    # Try Gemini 2.5 Flash, 2.0 Flash, or Flash-latest endpoints
+    model_names = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-flash-latest"]
+
     try:
         import google.generativeai as genai
         from PIL import Image
 
         genai.configure(api_key=api_key)
-        model = genai.GenerativeModel("gemini-1.5-flash")
         img = Image.open(image_path)
 
-        response = model.generate_content([_HIGH_PRECISION_PROMPT, img], generation_config={"response_mime_type": "application/json"})
-        data = json.loads(response.text)
-        DetectionResult.model_validate(data)
-        return data
+        for mname in model_names:
+            try:
+                model = genai.GenerativeModel(mname)
+                response = model.generate_content([_HIGH_PRECISION_PROMPT, img], generation_config={"response_mime_type": "application/json"})
+                data = json.loads(response.text)
+                DetectionResult.model_validate(data)
+                logger.info(f"Successfully extracted diagram structure using SDK model {mname}")
+                return data
+            except Exception as m_err:
+                logger.debug(f"SDK Model {mname} failed: {m_err}")
+
     except Exception as sdk_err:
         logger.info(f"SDK call failed ({sdk_err}), trying direct HTTP request...")
 
@@ -261,20 +271,28 @@ def detect_with_gemini_free(image_path: str, api_key: str) -> Dict[str, Any]:
 
     ext = os.path.splitext(image_path)[1].lower().replace(".", "")
     mime_type = f"image/{'jpeg' if ext in ['jpg', 'jpeg'] else 'png'}"
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
 
-    payload = {
-        "contents": [{"parts": [{"text": _HIGH_PRECISION_PROMPT}, {"inline_data": {"mime_type": mime_type, "data": base64_image}}]}],
-        "generationConfig": {"response_mime_type": "application/json", "temperature": 0.1}
-    }
+    for mname in model_names:
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{mname}:generateContent?key={api_key}"
 
-    req = urllib.request.Request(url, data=json.dumps(payload).encode("utf-8"), headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        res_data = json.loads(resp.read().decode("utf-8"))
-        text_content = res_data["candidates"][0]["content"]["parts"][0]["text"]
-        data = json.loads(text_content)
-        DetectionResult.model_validate(data)
-        return data
+        payload = {
+            "contents": [{"parts": [{"text": _HIGH_PRECISION_PROMPT}, {"inline_data": {"mime_type": mime_type, "data": base64_image}}]}],
+            "generationConfig": {"response_mime_type": "application/json", "temperature": 0.1}
+        }
+
+        try:
+            req = urllib.request.Request(url, data=json.dumps(payload).encode("utf-8"), headers={"Content-Type": "application/json"})
+            with urllib.request.urlopen(req, timeout=60) as resp:
+                res_data = json.loads(resp.read().decode("utf-8"))
+                text_content = res_data["candidates"][0]["content"]["parts"][0]["text"]
+                data = json.loads(text_content)
+                DetectionResult.model_validate(data)
+                logger.info(f"Successfully extracted diagram structure using HTTP model {mname}")
+                return data
+        except Exception as http_err:
+            logger.debug(f"HTTP Model {mname} failed: {http_err}")
+
+    raise RuntimeError("All Gemini model endpoints (2.5-flash, 2.0-flash, flash-latest) failed.")
 
 
 def detect_with_llm(image_path: str, api_key: str) -> Dict[str, Any]:
