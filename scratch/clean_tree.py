@@ -1,13 +1,19 @@
 import os
 
-# 1. Rename files if present safely using os.replace
-if os.path.exists("sample architecture.png"):
-    os.replace("sample architecture.png", "sample_architecture.png")
+# 1. Remove sample / sample architecture image and drawio files completely
+for filename in [
+    "sample architecture.png", 
+    "sample_architecture.drawio", 
+    "sample_architecture.png", 
+    "sample_architecture.drawio"
+]:
+    if os.path.exists(filename):
+        try:
+            os.remove(filename)
+        except Exception:
+            pass
 
-if os.path.exists("sample_architecture.drawio"):
-    os.replace("sample_architecture.drawio", "sample_architecture.drawio")
-
-# 2. Replace sample/sample in files
+# 2. Replace sample/sample in all code, json, md, txt files
 for root, dirs, files in os.walk("."):
     if ".git" in root or "venv" in root or "__pycache__" in root:
         continue
