@@ -411,12 +411,23 @@
       "nlb",
       "alb",
       "network load balancer",
-      "target group",
       "load balancer",
       "application load balancer"
     ],
     "provider": "aws",
-    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#8C4FFF;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.network_load_balancer;",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#8C4FFF;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.network_load_balancer;",
+    "default_size": [
+      60,
+      60
+    ]
+  },
+  "aws_target_group": {
+    "aliases": [
+      "target group",
+      "targetgroup"
+    ],
+    "provider": "aws",
+    "drawio_shape": "outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=none;fillColor=#8C4FFF;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ec2_instance_contents;",
     "default_size": [
       60,
       60
