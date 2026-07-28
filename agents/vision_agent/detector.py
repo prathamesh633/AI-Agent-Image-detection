@@ -279,7 +279,6 @@ def detect_with_gemini_free(image_path: str, api_key: str) -> Dict[str, Any]:
                     logger.info(f"Successfully extracted diagram structure using HTTP model {mname}")
                     return data
             except Exception as http_err:
-                print(f"HTTP Model {mname} attempt {attempt+1} failed: {http_err}")
                 logger.debug(f"HTTP Model {mname} attempt {attempt+1} failed: {http_err}")
                 if "503" in str(http_err) or "429" in str(http_err):
                     time.sleep(2)
