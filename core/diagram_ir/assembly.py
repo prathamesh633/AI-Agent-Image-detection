@@ -144,13 +144,23 @@ def assemble_diagram_ir(
                     smallest_area = area
                     best_parent = grp.id
 
+        # Compute absolute coordinates for node: if vision returned parent-relative coords (x < parent.x), convert to absolute
+        abs_x, abs_y = bbox[0], bbox[1]
+        if best_parent and best_parent in group_bboxes:
+            p_bbox = group_bboxes[best_parent]
+            # If child x,y is smaller than parent top-left x,y, it was returned as parent-relative
+            if abs_x < p_bbox[0]:
+                abs_x = p_bbox[0] + abs_x
+            if abs_y < p_bbox[1]:
+                abs_y = p_bbox[1] + abs_y
+
         nodes.append(
             Node(
                 id=node_id,
                 type=resolved_type,
                 label=label,
-                x=bbox[0],
-                y=bbox[1],
+                x=abs_x,
+                y=abs_y,
                 width=bbox[2],
                 height=bbox[3],
                 parent=best_parent,

@@ -151,6 +151,12 @@ def add_node(
 
     rel_x = node.x - parent_coords[0]
     rel_y = node.y - parent_coords[1]
+
+    # If child of a container group, ensure it stays inside container walls and below title bar
+    if node.parent:
+        rel_x = max(15.0, rel_x)
+        rel_y = max(35.0, rel_y)
+
     ET.SubElement(
         cell,
         "mxGeometry",
